@@ -557,71 +557,159 @@
         grid-template-columns: 1fr;
       }
     }
-	/* =======================
-   MOBILE FRIENDLY FIXES
-======================= */
+	/* ==========================
+   MOBILE OPTIMALISATIE
+========================== */
+@media (max-width: 600px) {
 
-@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
 
-  /* Hero */
+  /* HEADER */
+  .brand-name {
+    font-size: 0.8rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.7rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  /* HERO */
   .hero {
-    padding: 2.5rem 0;
+    padding: 2rem 0;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
     text-align: center;
   }
 
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
+    line-height: 1.15;
   }
 
   .hero-subtitle {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin: 0 auto 1.5rem;
   }
 
   .hero-image {
-    max-height: 320px;
+    max-height: 260px;
   }
 
-  /* Services */
+  .hero-image img {
+    max-height: 260px;
+    object-fit: cover;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 2.2rem 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* CARDS */
   .grid-3 {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
 
   .card {
-    padding: 1.3rem;
+    padding: 1.2rem;
   }
 
-  /* Team */
-  #team .grid-3 {
-    grid-template-columns: 1fr;
+  .card h3 {
+    font-size: 1.05rem;
   }
 
-  /* CTA / Contact */
+  .card p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  /* SLIDESHOW */
+  .slideshow-container {
+    padding: 0;
+  }
+
+  .slides {
+    gap: 0.75rem;
+  }
+
+  .slide {
+    flex: 0 0 100%;
+    height: 220px;
+    border-radius: 16px;
+  }
+
+  .slide img {
+    border-radius: 16px;
+  }
+
+  .slideshow-buttons {
+    padding: 0 0.5rem;
+  }
+
+  .slideshow-buttons button {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 10px;
+  }
+
+  /* TEAM */
+  .profile-top {
+    align-items: center;
+  }
+
+  .profile-name {
+    font-size: 0.95rem;
+  }
+
+  .profile-text {
+    font-size: 0.85rem;
+  }
+
+  /* CTA / CONTACT */
   .cta-card {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1.5rem;
+    padding: 1.4rem;
   }
 
   .contact-info {
-    margin-top: 1rem;
+    font-size: 0.85rem;
+    padding: 1.2rem;
   }
 
-  /* Buttons groter voor touch */
-  .btn {
+  input,
+  textarea {
     font-size: 0.9rem;
-    padding: 0.75rem 1.6rem;
+    padding: 0.8rem;
   }
 
-  /* Footer */
-  footer {
-    font-size: 0.75rem;
+  /* NATURE DIVIDER */
+  .nature-divider {
+    height: 40vh;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    background-attachment: scroll;
   }
 }
   </style>
@@ -927,4 +1015,5 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
 </script>
 </body>
 </html>
+
 
