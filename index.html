@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
   <title>EMN Tuinen – Tuinontwerp, aanleg & onderhoud</title>
 
   <!-- Fonts -->
@@ -626,6 +626,54 @@
     margin-left: auto;
     margin-right: auto;
   }
+	/* =====================
+   MOBILE MENU
+===================== */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+}
+
+/* Mobile menu panel */
+.mobile-menu {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  background: white;
+  display: none;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.2rem;
+  box-shadow: var(--shadow-card);
+  z-index: 100;
+}
+
+.mobile-menu a {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
 
   /* CARDS */
   .grid-3 {
@@ -730,15 +778,26 @@
               <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
             </div>
           </div>
-          <div class="nav-links">
-            <a href="about.html">Over ons</a>
-            <a href="realisaties.html">Realisaties</a>
-            <a href="contact.html">Contact</a>
-          </div>
+          <div class="nav-links desktop-menu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
           <button class="btn btn-primary">Vrijblijvend gesprek</button>
         </nav>
       </div>
     </header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
 
     <!-- Hero -->
     <section class="hero">
@@ -1004,6 +1063,18 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
         alert("Vul alstublieft alle velden in.");
         return;
       }
+		
+		/* ======================
+  		 Mobile menu toggle
+		====================== */
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamburger.addEventListener("click", () => {
+  mobileMenu.style.display =
+    mobileMenu.style.display === "flex" ? "none" : "flex";
+});
+
 
       const mailtoLink =
         `mailto:emntuinen@gmail.com?subject=${encodeURIComponent(subject)}&body=` +
@@ -1015,5 +1086,6 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
 </script>
 </body>
 </html>
+
 
 
