@@ -760,6 +760,13 @@
     background-attachment: scroll;
   }
 }
+	  .mobile-menu {
+  display: none;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
   </style>
 </head>
 
@@ -1070,12 +1077,6 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
 
-hamburger.addEventListener("click", () => {
-  mobileMenu.style.display =
-    mobileMenu.style.display === "flex" ? "none" : "flex";
-});
-
-
       const mailtoLink =
         `mailto:emntuinen@gmail.com?subject=${encodeURIComponent(subject)}&body=` +
         encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`);
@@ -1083,9 +1084,23 @@ hamburger.addEventListener("click", () => {
       window.location.href = mailtoLink;
     });
   }
+	  /* ======================
+   Mobile menu FIX
+====================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (!hamburger || !mobileMenu) return;
+
+  hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+  });
+});
 </script>
 </body>
 </html>
+
 
 
 
