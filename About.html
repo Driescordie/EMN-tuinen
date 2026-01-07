@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Over ons – EMN Tuinen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg-main: #f2f3ef;
+  --bg-section: #ffffff;
+  --green-dark: #2e4734;
+  --green-soft: #7f9b74;
+  --earth-brown: #8b6a45;
+  --text-main: #1f2a22;
+  --text-muted: #5e6a61;
+  --border-soft: #dde3db;
+  --shadow-soft: 0 14px 40px rgba(0,0,0,.12);
+  --shadow-card: 0 6px 20px rgba(0,0,0,.08);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --max-width: 1120px;
+}
+
+/* Global */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Inter", system-ui, sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+/* Header/Navbar (exact same as index) */
+header { background: var(--bg-section); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; transition: 0.3s; }
+header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; gap: 1rem; }
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.brand-logo { width: 42px; height: 42px; border-radius: 12px; overflow: hidden; }
+.brand-name { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+.brand-tagline { font-size: 0.75rem; color: var(--text-muted); }
+.nav-links { display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
+.nav-links a { position: relative; padding-bottom: 4px; }
+.nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--green-soft), var(--earth-brown)); transition: width 0.3s ease; }
+.nav-links a:hover::after { width: 100%; }
+.btn { padding: 0.55rem 1.4rem; font-size: 0.8rem; border-radius: 999px; cursor: pointer; border: none; white-space: nowrap; background: var(--green-dark); color: #fff; box-shadow: 0 3px 7px rgba(0,0,0,0.15); transition: 0.25s; }
+.btn-primary { background: linear-gradient(135deg, #2e4734, #5f7f56); color: #fff; box-shadow: 0 3px 8px rgba(46,71,52,0.5); }
+.btn-primary:hover { background: linear-gradient(135deg, #243a2a, #4f6d48); box-shadow: 0 6px 15px rgba(36,58,42,0.7); }
+
+/* Page Header */
+h1,h2,h3 { font-family: "Playfair Display", serif; color: var(--green-dark); margin-bottom: 0.5rem; }
+h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); text-align: center; margin-bottom: 3rem; }
+
+/* Grid 3 cards */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+
+/* Profile Card */
+.card { background: var(--bg-section); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 2rem; text-align: center; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s ease; }
+.card:hover { box-shadow: 0 10px 30px rgba(46,71,52,0.3); }
+.profile-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green-soft); margin-bottom: 1.5rem; box-shadow: var(--shadow-soft); }
+.name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.15rem; }
+.role { font-size: 1rem; font-weight: 500; color: var(--green-soft); margin-bottom: 1rem; }
+.description { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; min-height: 90px; }
+.contact-info { font-size: 0.9rem; color: var(--green-dark); display: flex; flex-direction: column; gap: 0.4rem; }
+.contact-info a { color: var(--earth-brown); font-weight: 600; transition: color 0.25s ease; }
+.contact-info a:hover { color: var(--green-dark); }
+
+/* Company card */
+.company-card { text-align: left; padding: 2.5rem 3rem; }
+.company-card h2 { margin-bottom: 1rem; }
+.company-description { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+
+/* Footer */
+footer { border-top: 1px solid var(--border-soft); padding: 2rem 0; font-size: 0.8rem; color: var(--text-muted); background: var(--bg-section); text-align: center; user-select: none; }
+main.container {
+  padding-bottom: 4rem; /* afstand tussen inhoud en footer */
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-logo"><img src="img/logo.png" alt="EMN Tuinen"></div>
+        <div>
+          <div class="brand-name">EMN Tuinen</div>
+          <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="realisaties.html">Realisaties</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="btn btn-primary">Vrijblijvend gesprek</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Over ons</h1>
+  <div class="grid-3">
+    <!-- Ben -->
+    <section class="card">
+      <img src="img/ben.jpg" alt="Foto van Ben" class="profile-photo">
+      <h2 class="name">Ben Elsen</h2>
+      <p class="role">Mijn visie.</p>
+      <p class="description">"Ik geniet ervan om een gezellig hoekje te creëren in een groene omgeving. Een goed onderhouden tuin waar ik in tot rust kan komen, is hierbij een essentiële waarde. Voeg hierbij een leuk plaatsje toe om te gaan zitten met vrienden en wat gekleurde bloemen of planten voor de bijtjes en voor mij is de tuin helemaal mijn oase van rust."</p>
+      <div class="contact-info">
+        <a href="tel:+32495871101">📞 0495/87.11.01</a>
+        <a href="mailto:enmtuinen@gmail.com">✉️ enmtuinen@gmail.com</a>
+      </div>
+    </section>
+
+    <!-- Jarny -->
+    <section class="card">
+      <img src="img/jarny.jpg" alt="Foto van Jarny" class="profile-photo">
+      <h2 class="name">Jarny Metten</h2>
+      <p class="role">Mijn visie.</p>
+      <p class="description">"Voor mij is de perfecte tuin strak en modern ingericht. Een groene gazon zonder onkruid, een lounge met houten afwerking, een mooi gesnoeide buxus en een strakke zwarte omheining. En natuurlijk niet te vergeten, een plaats waar mijn BBQ veilig en droog staat! Dat maakt de perfecte tuin pas helemaal compleet."</p>
+      <div class="contact-info">
+        <a href="tel:+32471527416">📞 0471/52.74.16</a>
+        <a href="mailto:enmtuinen@gmail.com">✉️ enmtuinen@gmail.com</a>
+      </div>
+    </section>
+
+    <!-- Bedrijf -->
+    <section class="card company-card">
+      <h2>EMN Tuinen</h2>
+      <p class="company-description">We streven ernaar om blijvend bekend te staan als een bedrijf waarbij kwaliteit, betrouwbaarheid en klanttevredenheid centraal staan. Graag behouden we een blijvende positieve impact op uw tuin en uw leven door het bieden van uitmuntende service en maatwerkoplossingen die volledig aansluiten op uw specifieke behoeften. Door u te ontzorgen en op professionele wijze te ondersteunen bij al uw tuinonderhoud en praktische klussen, bouwen we aan een langdurige relatie. Ons streven is om niet alleen uw verwachtingen te overtreffen, maar ook een positieve bijdrage te leveren aan uw tuin en de natuur.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 EMN Tuinen. Alle rechten voorbehouden.
+</footer>
+
+<script>
+  // Header scroll effect
+  const header = document.querySelector("header");
+  window.addEventListener("scroll", () => {
+    if(window.scrollY > 30) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  });
+</script>
+</body>
+</html>
