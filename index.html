@@ -646,22 +646,20 @@
 
 /* Mobile menu panel */
 .mobile-menu {
+  display: none;
   position: fixed;
   top: 72px;
   left: 0;
   width: 100%;
   background: white;
-  display: none;
-  flex-direction: column;
   padding: 1.5rem;
-  gap: 1.2rem;
-  box-shadow: var(--shadow-card);
-  z-index: 100;
+  z-index: 9999;
 }
 
-.mobile-menu a {
-  font-size: 1.1rem;
-  font-weight: 500;
+.mobile-menu.open {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 /* Responsive */
@@ -759,14 +757,6 @@
     padding: 0 1rem;
     background-attachment: scroll;
   }
-}
-	  .mobile-menu {
-  display: none;
-}
-
-.mobile-menu.open {
-  display: flex;
-}
   </style>
 </head>
 
@@ -965,9 +955,11 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
   </div>
 
   <!-- Scripts -->
-  <script>
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+
   /* ======================
-     Header scroll effect
+     HEADER SCROLL
   ====================== */
   const header = document.querySelector("header");
   window.addEventListener("scroll", () => {
@@ -976,17 +968,15 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
   });
 
   /* ======================
-     Hero fade in
+     HERO
   ====================== */
-  document.addEventListener("DOMContentLoaded", () => {
-    const heroGrid = document.querySelector(".hero-grid");
-    if (heroGrid) {
-      setTimeout(() => heroGrid.classList.add("visible"), 200);
-    }
-  });
+  const heroGrid = document.querySelector(".hero-grid");
+  if (heroGrid) {
+    setTimeout(() => heroGrid.classList.add("visible"), 200);
+  }
 
   /* ======================
-     Section fade in
+     FADE IN SECTIONS
   ====================== */
   const observer = new IntersectionObserver(
     (entries) => {
@@ -1005,7 +995,7 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
     .forEach((el) => observer.observe(el));
 
   /* ======================
-     Slideshow (FIXED)
+     SLIDESHOW
   ====================== */
   const slidesContainer = document.querySelector(".slides");
   const slides = document.querySelectorAll(".slide");
@@ -1027,8 +1017,7 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
     const slideWidth = slides[0].offsetWidth + 16;
     const maxIndex = slides.length - visibleSlides;
 
-    if (index < 0) index = 0;
-    if (index > maxIndex) index = maxIndex;
+    index = Math.max(0, Math.min(index, maxIndex));
 
     slidesContainer.style.transform =
       `translateX(-${index * slideWidth}px)`;
@@ -1048,15 +1037,27 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
   });
 
   window.addEventListener("resize", updateSlidePosition);
-
-  // Init slideshow
   updateSlidePosition();
 
   /* ======================
-     Contactformulier (mailto)
+     MOBILE MENU (100%)
+  ====================== */
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener("click", function () {
+      mobileMenu.classList.toggle("open");
+      console.log("hamburger clicked");
+    });
+  } else {
+    console.warn("Hamburger of mobileMenu niet gevonden");
+  }
+
+  /* ======================
+     CONTACT FORM
   ====================== */
   const contactForm = document.getElementById("contactForm");
-
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -1070,36 +1071,20 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
         alert("Vul alstublieft alle velden in.");
         return;
       }
-		
-		/* ======================
-  		 Mobile menu toggle
-		====================== */
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
 
       const mailtoLink =
-        `mailto:emntuinen@gmail.com?subject=${encodeURIComponent(subject)}&body=` +
+        `mailto:info@emntuinen.nl?subject=${encodeURIComponent(subject)}&body=` +
         encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`);
 
       window.location.href = mailtoLink;
     });
   }
-	  /* ======================
-   Mobile menu FIX
-====================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
 
-  if (!hamburger || !mobileMenu) return;
-
-  hamburger.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-  });
 });
 </script>
 </body>
 </html>
+
 
 
 
