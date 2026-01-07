@@ -557,6 +557,73 @@
         grid-template-columns: 1fr;
       }
     }
+	/* =======================
+   MOBILE FRIENDLY FIXES
+======================= */
+
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero {
+    padding: 2.5rem 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+  }
+
+  .hero-image {
+    max-height: 320px;
+  }
+
+  /* Services */
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.3rem;
+  }
+
+  /* Team */
+  #team .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  /* CTA / Contact */
+  .cta-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem;
+  }
+
+  .contact-info {
+    margin-top: 1rem;
+  }
+
+  /* Buttons groter voor touch */
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.6rem;
+  }
+
+  /* Footer */
+  footer {
+    font-size: 0.75rem;
+  }
+}
   </style>
 </head>
 
@@ -745,55 +812,101 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
 
   <!-- Scripts -->
   <script>
-    // Header scroll effect
-    const header = document.querySelector("header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 40) header.classList.add("scrolled");
-      else header.classList.remove("scrolled");
-    });
+  /* ======================
+     Header scroll effect
+  ====================== */
+  const header = document.querySelector("header");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  });
 
-    // Hero fade in
-    document.addEventListener("DOMContentLoaded", () => {
-      const heroGrid = document.querySelector(".hero-grid");
+  /* ======================
+     Hero fade in
+  ====================== */
+  document.addEventListener("DOMContentLoaded", () => {
+    const heroGrid = document.querySelector(".hero-grid");
+    if (heroGrid) {
       setTimeout(() => heroGrid.classList.add("visible"), 200);
-    });
+    }
+  });
 
-    // Section fade in
-    const observer = new IntersectionObserver((entries) => {
+  /* ======================
+     Section fade in
+  ====================== */
+  const observer = new IntersectionObserver(
+    (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    },
+    { threshold: 0.15 }
+  );
 
-    document.querySelectorAll(".section-title, .section-subtitle, .card").forEach(el => observer.observe(el));
+  document
+    .querySelectorAll(".section-title, .section-subtitle, .card")
+    .forEach((el) => observer.observe(el));
 
-    // Slideshow
-    const slidesContainer = document.querySelector(".slides");
-    const slides = document.querySelectorAll(".slide");
-    const prevBtn = document.getElementById("prevSlide");
-    const nextBtn = document.getElementById("nextSlide");
-    let index = 0;
-    const visibleSlides = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  /* ======================
+     Slideshow (FIXED)
+  ====================== */
+  const slidesContainer = document.querySelector(".slides");
+  const slides = document.querySelectorAll(".slide");
+  const prevBtn = document.getElementById("prevSlide");
+  const nextBtn = document.getElementById("nextSlide");
 
-    function updateSlidePosition() {
-      const slideWidth = slides[0].offsetWidth + 16; // gap
-      slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index >= slides.length - visibleSlides;
-    }
+  let index = 0;
 
-    prevBtn.addEventListener("click", () => { if(index>0) index--; updateSlidePosition(); });
-    nextBtn.addEventListener("click", () => { if(index<slides.length-visibleSlides) index++; updateSlidePosition(); });
-    window.addEventListener("resize", updateSlidePosition);
+  function getVisibleSlides() {
+    if (window.innerWidth < 600) return 1;
+    if (window.innerWidth < 900) return 2;
+    return 3;
+  }
+
+  function updateSlidePosition() {
+    if (!slides.length) return;
+
+    const visibleSlides = getVisibleSlides();
+    const slideWidth = slides[0].offsetWidth + 16;
+    const maxIndex = slides.length - visibleSlides;
+
+    if (index < 0) index = 0;
+    if (index > maxIndex) index = maxIndex;
+
+    slidesContainer.style.transform =
+      `translateX(-${index * slideWidth}px)`;
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === maxIndex;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    index--;
     updateSlidePosition();
+  });
 
-    // Contactformulier veilig met mailto
-    const contactForm = document.getElementById("contactForm");
+  nextBtn.addEventListener("click", () => {
+    index++;
+    updateSlidePosition();
+  });
+
+  window.addEventListener("resize", updateSlidePosition);
+
+  // Init slideshow
+  updateSlidePosition();
+
+  /* ======================
+     Contactformulier (mailto)
+  ====================== */
+  const contactForm = document.getElementById("contactForm");
+
+  if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const subject = document.getElementById("subject").value.trim();
@@ -804,10 +917,14 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
         return;
       }
 
-      const mailtoLink = `mailto:info@emntuinen.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`)}`;
+      const mailtoLink =
+        `mailto:emntuinen@gmail.com?subject=${encodeURIComponent(subject)}&body=` +
+        encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`);
+
       window.location.href = mailtoLink;
     });
-  </script>
+  }
+</script>
 </body>
 </html>
 
