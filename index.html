@@ -771,36 +771,45 @@
   }
 }
 	/* ==========================
-   SERVICES – READ MORE
+   SERVICES – READ MORE (FIX)
 ========================== */
 
 .service-content {
-  max-height: 5.5em; /* ongeveer 3 lijnen */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* AANTAL ZICHTBARE REGELS */
   overflow: hidden;
-  position: relative;
-  transition: max-height 0.45s ease;
+  transition: all 0.35s ease;
 }
 
 .service-card.expanded .service-content {
-  max-height: 1000px; /* groot genoeg */
+  -webkit-line-clamp: unset;
 }
 
+/* Mooie subtiele knop (geen lelijke button) */
 .read-more {
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
   background: none;
   border: none;
-  color: var(--green-dark);
+  color: var(--green-soft);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
 }
 
-.read-more:hover {
-  text-decoration: underline;
+.read-more::after {
+  content: " ↓";
+  font-weight: 400;
 }
 
+.service-card.expanded .read-more::after {
+  content: " ↑";
+}
 
+.read-more:hover {
+  color: var(--green-dark);
+}
   </style>
 </head>
 
@@ -1176,6 +1185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
