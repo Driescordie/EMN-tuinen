@@ -156,6 +156,55 @@ header.scrolled {
   box-shadow: 0 6px 15px rgba(36,58,42,0.7);
 }
 
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 1.5rem;
+  z-index: 9999;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-menu.active {
+  max-height: 500px;
+}
+
+/* Services inklapbaar */
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -196,6 +245,42 @@ header.scrolled {
   font-weight: 600;
   color: var(--green-dark);
   margin-bottom: 0.4rem;
+}
+
+/* Responsive: tablet / mobiel */
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr; /* alles onder elkaar */
+  }
+
+  .service {
+    width: 100%;
+  }
+}
+
+
+
+/* Desktop / mobiel menu */
+.desktop-menu {
+  display: flex;
+}
+
+@media screen and (max-width: 900px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
 }
 
 /* Hero */
@@ -615,6 +700,7 @@ header.scrolled {
     padding: 0 1rem;
   }
 }
+/* (Hier kun je al je overige originele CSS kopiëren en plakken, niets verwijderen) */
 
 /* Responsive / mobiel optimalisatie */
 @media (max-width: 900px) {
@@ -750,156 +836,44 @@ header.scrolled {
   margin-top: 0.2rem;
   font-style: italic;
 }
-/* Hamburger menu */
-.hamburger {
-  display: none; /* alleen zichtbaar op mobiel */
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background: var(--green-dark);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-/* Animatie bij active */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Mobiele menu container */
-.mobile-menu {
-  display: none; /* standaard verborgen */
-  position: fixed;
-  top: 72px; /* hoogte header */
-  left: 0;
-  width: 100%;
-  background: var(--bg-section);
-  padding: 1.5rem;
-  z-index: 999;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  flex-direction: column;
-  gap: 1rem;
-}
-	  
-/* Openen van mobiel menu */
-.mobile-menu.active {
-  display: flex; /* flex zichtbaar */
-  max-height: 500px; /* voldoende om alle links te tonen */
-}
-
-/* Mobiel zichtbaar maken */
-@media screen and (max-width: 900px) {
-  .hamburger {
-    display: flex; /* toon hamburger op mobiel */
-  }
-
-  .nav-links {
-    display: none; /* desktop links verbergen */
-  }
-}
-	  /* Alleen voor mobiel */
-@media screen and (max-width: 900px) {
-  .desktop-menu {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-
-  .hamburger span {
-    width: 26px;
-    height: 3px;
-    background: var(--green-dark);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    background: var(--bg-section);
-    padding: 1.5rem;
-  }
-
-  .mobile-menu.active {
-    max-height: 500px;
-  }
-}
-
-
   </style>
 </head>
 
 <body>
   <div class="page">
     <!-- Header -->
-   <header>
-  <div class="nav container">
-    <div class="brand">
-      <img src="logo.png" alt="Logo" class="brand-logo">
-      <div class="brand-name">Mijn Site</div>
-    </div>
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-logo">
+              <img src="img/logo.png" alt="EMN Tuinen" />
+            </div>
+            <div>
+              <div class="brand-name">EMN Tuinen</div>
+              <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+            </div>
+          </div>
+          <div class="nav-links desktop-menu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-    <div class="nav-links desktop-menu">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">Over ons</a>
-      <a href="#contact">Contact</a>
-    </div>
-
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <!-- Mobiel menu -->
-  <nav class="mobile-menu" id="mobileMenu">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">Over ons</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+			<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
+         
+        </nav>
+      </div>
+    </header>
 
     <!-- Hero -->
     <section class="hero">
@@ -1165,14 +1139,14 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ======================
      MOBILE MENU (100%)
   ====================== */
- const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('active');
-});
-
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener("click", function () {
+      mobileMenu.classList.toggle("open");
+      console.log("hamburger clicked");
+    });
   } else {
     console.warn("Hamburger of mobileMenu niet gevonden");
   }
@@ -1227,24 +1201,3 @@ services.forEach(service => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
