@@ -472,36 +472,39 @@ header.scrolled {
       user-select: none;
     }
 
-    /* Slideshow modern en schaalbaar */
-    .slideshow-container {
+   /* Slideshow container */
+.slideshow-container {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  overflow: hidden; /* dit moet blijven */
+  overflow: hidden; /* houdt slides netjes binnen */
   position: relative;
-  padding: 0; /* geen extra padding die de slides breekt */
+  padding: 0;
 }
 
-
-    .slides {
+/* Slides wrapper */
+.slides {
   display: flex;
-  gap: 1rem; /* ruimte tussen slides */
+  gap: 1rem;
   padding: 0;
   margin: 0;
-  overflow-x: hidden; /* voorkomt dat slides uitsteken */
   transition: transform 0.5s ease-in-out;
+  overflow-x: auto;                /* scrollen op mobiel */
+  scroll-snap-type: x mandatory;   /* snap-effect */
+  -webkit-overflow-scrolling: touch; /* soepel scrollen iOS */
 }
 
-
- .slide {
-  flex: 0 0 auto; /* belangrijk: geen calc() meer */
-  width: 33.333%; /* desktop: 3 slides zichtbaar */
+/* Elke slide */
+.slide {
+  flex: 0 0 auto;          /* voorkomt dat slides krimpen */
+  width: 33.333%;          /* desktop: 3 slides zichtbaar */
+  min-width: 220px;        /* voorkom te kleine slides */
   height: 360px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
   background: white;
-  scroll-snap-align: start; /* voor snap effect */
+  scroll-snap-align: start; /* voor snap-effect */
   transition: transform 0.3s ease;
 }
 
@@ -510,50 +513,54 @@ header.scrolled {
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-lg);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-    .slide img:hover {
-      transform: scale(1.03);
-    }
+.slide img:hover {
+  transform: scale(1.03);
+}
 
-    /* Knoppen */
-    .slideshow-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-      pointer-events: none;
-    }
+/* Knoppen */
+.slideshow-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
 
-    .slideshow-buttons button {
-      pointer-events: auto;
-      background: rgba(46, 71, 52, 0.5);
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+.slideshow-buttons button {
+  pointer-events: auto;
+  background: rgba(46, 71, 52, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+}
 
-    .slideshow-buttons button:hover:not(:disabled) {
-      background: rgba(46, 71, 52, 0.8);
-      transform: scale(1.1);
-    }
+.slideshow-buttons button:hover:not(:disabled) {
+  background: rgba(46, 71, 52, 0.8);
+  transform: scale(1.1);
+}
 
-    .slideshow-buttons button:disabled {
-      opacity: 0.3;
-      cursor: default;
-    }
+.slideshow-buttons button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 
-  /* Tablet: 2 slides */
+/* Responsief */
+
+/* Tablet: 2 slides */
 @media (max-width: 900px) {
   .slide {
-    width: 50%; /* 2 slides zichtbaar */
+    width: 50%;
     height: 280px;
   }
 }
@@ -561,10 +568,11 @@ header.scrolled {
 /* Mobiel: 1 slide */
 @media (max-width: 600px) {
   .slide {
-    width: 100%; /* 1 slide zichtbaar */
+    width: 100%;
     height: 240px;
   }
 }
+
 
     /* CTA / Contact */
     .cta {
@@ -1205,6 +1213,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
