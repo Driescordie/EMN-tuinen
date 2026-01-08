@@ -135,12 +135,14 @@ header.scrolled {
   box-shadow: 0 6px 15px rgba(36,58,42,0.7);
 }
 
-/* Hamburger knop alleen op mobiel */
+/* Hamburger standaard verborgen op desktop */
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .hamburger span {
@@ -151,6 +153,7 @@ header.scrolled {
   transition: all 0.3s ease;
 }
 
+/* Hamburger animatie */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -161,28 +164,38 @@ header.scrolled {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile menu */
+/* Mobile menu standaard verborgen */
 .mobile-menu {
   display: none;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 1rem;
+  background: var(--bg-section);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 80%;
+  max-width: 320px;
+  padding: 1rem;
+  box-shadow: var(--shadow-card);
+  z-index: 999;
 }
 
+/* Mobile menu zichtbaar bij active */
 .mobile-menu.active {
   display: flex;
 }
 
-/* Responsive */
+/* Toon hamburger op mobiel */
 @media (max-width: 900px) {
-  .desktop-menu {
-    display: none;
-  }
-
   .hamburger {
     display: flex;
   }
+  .desktop-menu {
+    display: none;
+  }
 }
+
+
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -745,10 +758,10 @@ header.scrolled {
 <body>
   <div class="page">
     <!-- Header -->
-   <header>
+  <header>
   <div class="container">
     <nav class="nav">
-      <!-- Brand -->
+      <!-- Branding -->
       <div class="brand">
         <div class="brand-logo">
           <img src="img/logo.png" alt="EMN Tuinen" />
@@ -759,22 +772,21 @@ header.scrolled {
         </div>
       </div>
 
-      <!-- Desktop menu -->
+      <!-- Desktop links -->
       <div class="nav-links desktop-menu">
-        <a href="index.html">Home</a>
         <a href="about.html">Over ons</a>
         <a href="realisaties.html">Realisaties</a>
         <a href="contact.html">Contact</a>
       </div>
 
-      <!-- Hamburger knop (mobiel) -->
+      <!-- Hamburger menu -->
       <button class="hamburger" aria-label="Menu openen">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <!-- Mobile menu -->
+      <!-- Mobiel menu -->
       <div class="mobile-menu">
         <a href="index.html">Home</a>
         <a href="about.html">Over ons</a>
@@ -782,10 +794,10 @@ header.scrolled {
         <a href="contact.html">Contact</a>
         <button class="btn btn-primary">Vrijblijvend gesprek</button>
       </div>
-
     </nav>
   </div>
 </header>
+
 
 
     <!-- Hero -->
@@ -1105,6 +1117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
