@@ -774,7 +774,7 @@
    SERVICES – READ MORE (FIX)
 ========================== */
 
-..service-content {
+.service-content {
   max-height: 5.5em; /* ongeveer 3 regels tekst */
   overflow: hidden;
   transition: max-height 0.45s ease;
@@ -834,6 +834,7 @@
             </div>
           </div>
           <div class="nav-links desktop-menu">
+		<div class="mobile-menu" id="mobileMenu">
   <a href="about.html">Over ons</a>
   <a href="realisaties.html">Realisaties</a>
   <a href="contact.html">Contact</a>
@@ -1142,6 +1143,12 @@ document.addEventListener("DOMContentLoaded", function () {
       mobileMenu.classList.toggle("open");
     });
   }
+	document.querySelectorAll('#mobileMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+  });
+});
+
 
   /* ======================
      CONTACT FORM
@@ -1184,17 +1191,11 @@ document.addEventListener("DOMContentLoaded", function () {
         : "Lees meer ▼";
     });
   });
-
-});
-	document.querySelectorAll('.read-more').forEach(button => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.service-card');
-    card.classList.toggle('expanded');
-  });
 });
 </script>
 </body>
 </html>
+
 
 
 
