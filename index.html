@@ -750,6 +750,70 @@ header.scrolled {
   margin-top: 0.2rem;
   font-style: italic;
 }
+/* Hamburger menu */
+.hamburger {
+  display: none; /* alleen zichtbaar op mobiel */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animatie bij active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobiele menu container */
+.mobile-menu {
+  display: none; /* standaard verborgen */
+  position: fixed;
+  top: 72px; /* hoogte header */
+  left: 0;
+  width: 100%;
+  background: var(--bg-section);
+  padding: 1.5rem;
+  z-index: 999;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  flex-direction: column;
+  gap: 1rem;
+}
+	  
+/* Openen van mobiel menu */
+.mobile-menu.active {
+  display: flex; /* flex zichtbaar */
+  max-height: 500px; /* voldoende om alle links te tonen */
+}
+
+/* Mobiel zichtbaar maken */
+@media screen and (max-width: 900px) {
+  .hamburger {
+    display: flex; /* toon hamburger op mobiel */
+  }
+
+  .nav-links {
+    display: none; /* desktop links verbergen */
+  }
+}
+
   </style>
 </head>
 
@@ -779,13 +843,14 @@ header.scrolled {
   <span></span>
   <span></span>
 </div>
-			<div class="mobile-menu" id="mobileMenu">
-  <a href="about.html">Over ons</a>
-  <a href="realisaties.html">Realisaties</a>
-  <a href="contact.html">Contact</a>
-</div>
-         
-        </nav>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#about">Over ons</a>
+  <a href="#contact">Contact</a>
+</nav>
+
       </div>
     </header>
 
@@ -1053,14 +1118,14 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ======================
      MOBILE MENU (100%)
   ====================== */
-  const hamburger = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
+ const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", function () {
-      mobileMenu.classList.toggle("open");
-      console.log("hamburger clicked");
-    });
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
+
   } else {
     console.warn("Hamburger of mobileMenu niet gevonden");
   }
@@ -1115,6 +1180,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
