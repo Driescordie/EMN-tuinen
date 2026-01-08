@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
-/* --- Exact dezelfde CSS als jouw Over ons pagina --- */
+/* --- BASIS (zelfde stijl als je site) --- */
 :root {
   --bg-main: #f2f3ef;
   --bg-section: #ffffff;
@@ -26,12 +26,28 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Inter", system-ui, sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+body { 
+  font-family: "Inter", system-ui, sans-serif; 
+  background: var(--bg-main); 
+  color: var(--text-main); 
+  line-height: 1.6; 
+  overflow-x: hidden; 
+}
 
-/* Header/Navbar */
+/* --- PARALLAX BACKGROUND --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('img/green-texture.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* --- HEADER / NAV (zelfde als jouw site) --- */
 header { background: var(--bg-section); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; transition: 0.3s; }
 header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 
@@ -41,57 +57,125 @@ header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px)
 .brand-name { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
 .brand-tagline { font-size: 0.75rem; color: var(--text-muted); }
 
-/* Nav Links */
 .nav-links-container { display: flex; align-items: center; gap: 1.5rem; transition: right 0.3s ease; }
 .nav-links { display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
 .nav-links a { position: relative; padding-bottom: 4px; }
 .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--green-soft), var(--earth-brown)); transition: width 0.3s ease; }
 .nav-links a:hover::after { width: 100%; }
 
-.btn { padding: 0.55rem 1.4rem; font-size: 0.8rem; border-radius: 999px; cursor: pointer; border: none; white-space: nowrap; background: var(--green-dark); color: #fff; box-shadow: 0 3px 7px rgba(0,0,0,0.15); transition: 0.25s; }
-.btn-primary { background: linear-gradient(135deg, #2e4734, #5f7f56); color: #fff; box-shadow: 0 3px 8px rgba(46,71,52,0.5); }
-.btn-primary:hover { background: linear-gradient(135deg, #243a2a, #4f6d48); box-shadow: 0 6px 15px rgba(36,58,42,0.7); }
+/* --- WOW TITLE ANIMATION --- */
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  text-align: center;
+  margin: 3rem 0;
+  color: var(--green-dark);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
 
-/* Hamburger menu */
-.hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; padding: 0; }
-.hamburger span { display: block; height: 3px; width: 100%; background: var(--green-dark); border-radius: 2px; transition: 0.3s; }
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
 
-/* Page Header */
-h1,h2,h3 { font-family: "Playfair Display", serif; color: var(--green-dark); margin-bottom: 0.5rem; }
-h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); text-align: center; margin-bottom: 3rem; }
+/* --- CONTACT GRID --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
 
-/* Contact Grid */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+/* --- CARDS MET GLOW EFFECT --- */
+.card {
+  background: var(--bg-section);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-/* Contact Card */
-.card { background: var(--bg-section); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 2rem; transition: box-shadow 0.3s ease; }
-.card:hover { box-shadow: 0 10px 30px rgba(46,71,52,0.3); }
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(46,71,52,0.25);
+}
 
-.contact-details { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
-.contact-details a { color: var(--earth-brown); font-weight: 600; }
-.contact-details a:hover { color: var(--green-dark); }
+/* Floating glow */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -40%; left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle, rgba(127,155,116,0.15), transparent 60%);
+  transform: rotate(25deg);
+  animation: floatGlow 8s infinite linear;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(20px,20px) rotate(180deg); }
+  100% { transform: translate(0,0) rotate(360deg); }
+}
+
+/* --- FORM STYLING --- */
+input, textarea {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--green-soft);
+  box-shadow: 0 0 10px rgba(127,155,116,0.4);
+  outline: none;
+}
+
+.btn-primary {
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #2e4734, #5f7f56);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(46,71,52,0.4);
+}
+
+/* --- SUCCESS MESSAGE POPUP --- */
+#successMessage {
+  position: fixed;
+  bottom: -200px;
+  right: 20px;
+  background: var(--green-dark);
+  color: #fff;
+  padding: 1.2rem 1.6rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  font-size: 1rem;
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 999;
+}
+
+#successMessage.show {
+  bottom: 30px;
+  opacity: 1;
+}
 
 /* Footer */
-footer { border-top: 1px solid var(--border-soft); padding: 2rem 0; font-size: 0.8rem; color: var(--text-muted); background: var(--bg-section); text-align: center; user-select: none; }
-main.container { padding-bottom: 4rem; }
+footer { border-top: 1px solid var(--border-soft); padding: 2rem 0; font-size: 0.8rem; color: var(--text-muted); background: var(--bg-section); text-align: center; user-select: none; margin-top: 4rem; }
 
-/* Mobile */
-@media (max-width: 900px) {
-  .hamburger { display: flex; }
-  .nav-links-container {
-    position: fixed; top: 0; right: -100%; height: 100vh; width: 250px;
-    background: var(--bg-section); flex-direction: column; align-items: flex-start;
-    padding: 5rem 1.5rem; gap: 2rem; box-shadow: -4px 0 12px rgba(0,0,0,0.1);
-    transition: right 0.3s ease; z-index: 100;
-  }
-  .nav-links-container.open { right: 0; }
-  .nav-links { flex-direction: column; width: 100%; }
-  .nav-links a { font-size: 1.1rem; }
-  .btn.btn-primary { width: 100%; text-align: center; }
-}
 </style>
 </head>
 
@@ -131,52 +215,62 @@ main.container { padding-bottom: 4rem; }
     <!-- Contactgegevens -->
     <section class="card">
       <h2>Neem contact op</h2>
-      <p class="contact-details">
-        Heeft u vragen, wenst u een vrijblijvende offerte of wilt u een afspraak maken?  
-        Wij helpen u graag verder.
-      </p>
-
-      <p class="contact-details" style="margin-top:1rem;">
+      <p>Wij staan klaar om uw tuinproject tot leven te brengen.</p>
+      <p style="margin-top:1rem;">
         📞 <a href="tel:+32495871101">0495/87.11.01</a><br>
         📞 <a href="tel:+32471527416">0471/52.74.16</a><br>
         ✉️ <a href="mailto:enmtuinen@gmail.com">enmtuinen@gmail.com</a>
       </p>
-
-      <p class="contact-details" style="margin-top:1rem;">
-        📍 Regio: Mol & omstreken  
-      </p>
+      <p style="margin-top:1rem;">📍 Regio Mol & omstreken</p>
     </section>
 
-    <!-- Contactformulier -->
+    <!-- Formulier -->
     <section class="card">
       <h2>Stuur ons een bericht</h2>
-      <form action="#" method="post" style="display:flex; flex-direction:column; gap:1rem; margin-top:1rem;">
-        <input type="text" name="naam" placeholder="Uw naam" required style="padding:0.8rem; border-radius:var(--radius-md); border:1px solid var(--border-soft);">
-        <input type="email" name="email" placeholder="Uw e-mailadres" required style="padding:0.8rem; border-radius:var(--radius-md); border:1px solid var(--border-soft);">
-        <textarea name="bericht" placeholder="Uw bericht" rows="5" required style="padding:0.8rem; border-radius:var(--radius-md); border:1px solid var(--border-soft);"></textarea>
-        <button class="btn btn-primary" type="submit">Verzenden</button>
+      <form id="contactForm" style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem;">
+        <input type="text" name="naam" placeholder="Uw naam" required>
+        <input type="email" name="email" placeholder="Uw e-mailadres" required>
+        <textarea name="bericht" placeholder="Uw bericht" rows="5" required></textarea>
+        <button class="btn-primary" type="submit">Verzenden</button>
       </form>
     </section>
 
   </div>
 </main>
 
+<div id="successMessage">✔️ Bericht succesvol verzonden!</div>
+
 <footer>
   &copy; 2026 EMN Tuinen. Alle rechten voorbehouden.
 </footer>
 
 <script>
+/* Header scroll effect */
 const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
-  if(window.scrollY > 30) header.classList.add("scrolled");
-  else header.classList.remove("scrolled");
+  header.classList.toggle("scrolled", window.scrollY > 30);
 });
 
+/* Hamburger menu */
 const hamburger = document.querySelector(".hamburger");
 const navContainer = document.querySelector(".nav-links-container");
 hamburger.addEventListener("click", () => {
   navContainer.classList.toggle("open");
   hamburger.classList.toggle("open");
+});
+
+/* Fake form submit + popup */
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const msg = document.getElementById("successMessage");
+  msg.classList.add("show");
+
+  setTimeout(() => {
+    msg.classList.remove("show");
+  }, 3000);
+
+  this.reset();
 });
 </script>
 
