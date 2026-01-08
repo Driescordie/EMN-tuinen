@@ -812,7 +812,15 @@
 .mobile-menu.active {
   max-height: 500px; /* genoeg om al je links te tonen */
 }
+.service-content {
+  max-height: 0;          /* standaard ingeklapt */
+  overflow: hidden;       /* inhoud die niet zichtbaar is verbergen */
+  transition: max-height 0.3s ease;
+}
 
+.service.active .service-content {
+  max-height: 500px;      /* genoeg om de inhoud te tonen */
+}
   </style>
 </head>
 
@@ -1147,9 +1155,21 @@ hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('active'); // laat menu uitklappen
 });
 </script>
+	<script>
+	// alle service vakken ophalen
+const services = document.querySelectorAll('.service');
+
+services.forEach(service => {
+  const title = service.querySelector('.service-title');
+  title.addEventListener('click', () => {
+    service.classList.toggle('active');
+  });
+});
+</script>
 </body>
 </body>
 </html>
+
 
 
 
