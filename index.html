@@ -1025,9 +1025,16 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSlidePosition();
 
   /* ======================
-     MOBILE MENU (100%)
+     MOBILE MENU
   ====================== */
-}
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if(hamburger && mobileMenu){
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      mobileMenu.classList.toggle("active");
+    });
+  }
 
   /* ======================
      CONTACT FORM
@@ -1055,29 +1062,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-});
-</script>
-	<script>
-  // Hamburger menu toggle
-  const hamburger = document.querySelector(".hamburger");
-  const navContainer = document.querySelector(".nav-links-container");
-  hamburger.addEventListener("click", () => {
-    navContainer.classList.toggle("open");
-    hamburger.classList.toggle("open");
+  /* ======================
+     SERVICES CLICK
+  ====================== */
+  const services = document.querySelectorAll('.service');
+  services.forEach(service => {
+    const title = service.querySelector('.service-title');
+    title.addEventListener('click', () => {
+      service.classList.toggle('active');
+    });
   });
-</script>
-	<script>
-	// alle service vakken ophalen
-const services = document.querySelectorAll('.service');
 
-services.forEach(service => {
-  const title = service.querySelector('.service-title');
-  title.addEventListener('click', () => {
-    service.classList.toggle('active');
-  });
 });
 </script>
+
 </body>
 </html>
+
 
 
