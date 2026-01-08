@@ -55,11 +55,7 @@ a {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-.hamburger {
-  z-index: 99999 !important;
-  position: relative;
-  pointer-events: auto !important;
-}
+
 /* Header */
 header {
   background: var(--bg-section);
@@ -241,17 +237,6 @@ header.scrolled {
   color: var(--green-dark);
   margin-bottom: 0.4rem;
 }
-
-/* Responsive: tablet / mobiel */
-@media (max-width: 900px) {
-  .grid-3 {
-    grid-template-columns: 1fr; /* alles onder elkaar */
-  }
-
-  .service {
-    width: 100%;
-  }
-}
 /* Hero */
 .hero {
   padding: 4rem 0 3.5rem;
@@ -354,13 +339,6 @@ header.scrolled {
     .section-subtitle.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
     }
 
     .card {
@@ -516,21 +494,6 @@ header.scrolled {
       opacity: 0.3;
       cursor: default;
     }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .slide {
-        flex: 0 0 calc((100% - 1rem) / 2);
-        height: 280px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .slide {
-        flex: 0 0 100%;
-      }
-    }
-
     /* CTA / Contact */
     .cta {
       background: linear-gradient(135deg, #eef2ec, #e6ded3);
@@ -579,14 +542,6 @@ header.scrolled {
       user-select: none;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid,
-      .cta-card {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
       .slideshow-buttons button {
         padding: 0.35rem 0.75rem;
       }
@@ -669,23 +624,6 @@ header.scrolled {
     padding: 0 1rem;
   }
 }
-/* (Hier kun je al je overige originele CSS kopiëren en plakken, niets verwijderen) */
-
-
-/* Hero grid op mobiel */
-@media (max-width: 900px) {
-  .hero-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Grid-3 op mobiel */
-@media (max-width: 900px) {
-  .grid-3 {
-    grid-template-columns: 1fr !important;
-  }
-}
-
 /* Slides container overflow fix */
 .slides {
   overflow-x: hidden;
@@ -1121,6 +1059,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
