@@ -1005,7 +1005,7 @@ Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke 
   </div>
 
   <!-- Scripts -->
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ======================
@@ -1013,8 +1013,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ====================== */
   const header = document.querySelector("header");
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) header.classList.add("scrolled");
-    else header.classList.remove("scrolled");
+    header.classList.toggle("scrolled", window.scrollY > 40);
   });
 
   /* ======================
@@ -1029,8 +1028,8 @@ document.addEventListener("DOMContentLoaded", function () {
      FADE IN SECTIONS
   ====================== */
   const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
+    entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
           observer.unobserve(entry.target);
@@ -1042,7 +1041,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document
     .querySelectorAll(".section-title, .section-subtitle, .card")
-    .forEach((el) => observer.observe(el));
+    .forEach(el => observer.observe(el));
 
   /* ======================
      SLIDESHOW
@@ -1063,25 +1062,23 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateSlidePosition() {
     if (!slides.length) return;
 
-    const visibleSlides = getVisibleSlides();
+    const visible = getVisibleSlides();
     const slideWidth = slides[0].offsetWidth + 16;
-    const maxIndex = slides.length - visibleSlides;
+    const maxIndex = slides.length - visible;
 
     index = Math.max(0, Math.min(index, maxIndex));
-
-    slidesContainer.style.transform =
-      `translateX(-${index * slideWidth}px)`;
+    slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
 
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === maxIndex;
   }
 
-  prevBtn.addEventListener("click", () => {
+  prevBtn?.addEventListener("click", () => {
     index--;
     updateSlidePosition();
   });
 
-  nextBtn.addEventListener("click", () => {
+  nextBtn?.addEventListener("click", () => {
     index++;
     updateSlidePosition();
   });
@@ -1090,18 +1087,15 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSlidePosition();
 
   /* ======================
-     MOBILE MENU (100%)
+     MOBILE MENU
   ====================== */
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
 
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", function () {
+    hamburger.addEventListener("click", () => {
       mobileMenu.classList.toggle("open");
-      console.log("hamburger clicked");
     });
-  } else {
-    console.warn("Hamburger of mobileMenu niet gevonden");
   }
 
   /* ======================
@@ -1109,7 +1103,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ====================== */
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", e => {
       e.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -1122,31 +1116,36 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const mailtoLink =
+      const mailto =
         `mailto:info@emntuinen.nl?subject=${encodeURIComponent(subject)}&body=` +
         encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`);
 
-      window.location.href = mailtoLink;
+      window.location.href = mailto;
     });
-});
   }
 
-});
-	  /* ======================
-  	 SERVICES READ MORE
-	====================== */
-document.querySelectorAll(".read-more").forEach(button => {
-  button.addEventListener("click", () => {
-    const card = button.closest(".service-card");
-    card.classList.toggle("expanded");
+  /* ======================
+     SERVICES READ MORE
+  ====================== */
+  document.querySelectorAll(".read-more").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".service-card");
+      if (!card) return;
 
-    button.textContent = card.classList.contains("expanded")
-      ? "Lees minder"
-      : "Lees meer";
+      card.classList.toggle("expanded");
+
+      button.innerHTML = card.classList.contains("expanded")
+        ? "Lees minder ▲"
+        : "Lees meer ▼";
+    });
   });
+
+});
 </script>
+
 </body>
 </html>
+
 
 
 
