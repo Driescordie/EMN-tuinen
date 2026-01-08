@@ -217,32 +217,6 @@ header.scrolled {
     width: 100%;
   }
 }
-
-
-
-/* Desktop / mobiel menu */
-.desktop-menu {
-  display: flex;
-}
-
-@media screen and (max-width: 900px) {
-  .desktop-menu {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-}
-
 /* Hero */
 .hero {
   padding: 4rem 0 3.5rem;
@@ -662,27 +636,6 @@ header.scrolled {
 }
 /* (Hier kun je al je overige originele CSS kopiëren en plakken, niets verwijderen) */
 
-/* Responsive / mobiel optimalisatie */
-@media (max-width: 900px) {
-  .hero-grid,
-  .cta-card {
-    grid-template-columns: 1fr;
-  }
-  .nav-links {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  body {
-    font-size: 15px;
-  }
-}
-	  /* Algemeen voor mobiel */
-* {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
 
 /* Hero grid op mobiel */
 @media (max-width: 900px) {
@@ -746,34 +699,6 @@ header.scrolled {
   max-height: 500px; /* groot genoeg om alle inhoud te tonen */
 }
 
-/* Mobiel */
-@media (max-width: 900px) {
-  .services-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .service {
-    width: 100%; /* volle breedte op mobiel */
-    max-width: 400px;
-  }
-}
-.service {
-  background: var(--bg-section);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem 1.4rem;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  width: 300px;
-  cursor: pointer; /* toont dat het klikbaar is */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative; /* voor het plusje */
-}
-
-.service:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-}
 
 /* Plus/min indicator */
 .service::after {
@@ -1154,4 +1079,5 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
