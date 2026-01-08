@@ -179,11 +179,20 @@ header.scrolled {
   box-shadow: var(--shadow-card);
   z-index: 999;
 }
+.nav {
+  position: relative;
+}
 
 /* Mobile menu zichtbaar bij active */
 .mobile-menu.active {
   display: flex;
 }
+	  
+.hamburger {
+  z-index: 1000;
+  position: relative;
+}
+
 
 /* Toon hamburger op mobiel */
 @media (max-width: 900px) {
@@ -494,6 +503,16 @@ header.scrolled {
       opacity: 0.3;
       cursor: default;
     }
+	  @media (max-width: 900px) {
+  .slideshow-buttons button {
+    padding: 0.35rem 0.75rem;
+  }
+
+  .slide {
+    width: 240px;
+  }
+}
+
     /* CTA / Contact */
     .cta {
       background: linear-gradient(135deg, #eef2ec, #e6ded3);
@@ -694,6 +713,21 @@ header.scrolled {
   margin-top: 0.2rem;
   font-style: italic;
 }
+
+	@media (max-width: 900px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .service,
+  .card,
+  .slide {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
   </style>
 </head>
 
@@ -1059,6 +1093,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
