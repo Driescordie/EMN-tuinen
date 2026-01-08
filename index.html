@@ -774,41 +774,46 @@
    SERVICES – READ MORE (FIX)
 ========================== */
 
-.service-content {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* AANTAL ZICHTBARE REGELS */
+..service-content {
+  max-height: 5.5em; /* ongeveer 3 regels tekst */
   overflow: hidden;
-  transition: all 0.35s ease;
+  transition: max-height 0.45s ease;
+  margin-bottom: 0.6rem;
 }
 
 .service-card.expanded .service-content {
-  -webkit-line-clamp: unset;
+  max-height: 20em; /* groot genoeg om uit te klappen zonder te lang */
 }
 
-/* Mooie subtiele knop (geen lelijke button) */
 .read-more {
-  margin-top: 0.6rem;
-  background: none;
-  border: none;
-  color: var(--green-soft);
-  font-size: 0.8rem;
+  display: inline-block;
+  background: var(--green-soft);
+  color: white;
   font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: none;
   cursor: pointer;
-  padding: 0;
-}
-
-.read-more::after {
-  content: " ↓";
-  font-weight: 400;
-}
-
-.service-card.expanded .read-more::after {
-  content: " ↑";
+  user-select: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 7px rgba(127, 155, 116, 0.5);
+  line-height: 1.2;
 }
 
 .read-more:hover {
-  color: var(--green-dark);
+  background: var(--green-dark);
+  box-shadow: 0 6px 15px rgba(46, 71, 52, 0.6);
+}
+
+.read-more::after {
+  content: " ▼";
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+.service-card.expanded .read-more::after {
+  content: " ▲";
 }
   </style>
 </head>
@@ -1181,10 +1186,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+	document.querySelectorAll('.read-more').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.service-card');
+    card.classList.toggle('expanded');
+  });
+});
 </script>
-
 </body>
 </html>
+
 
 
 
