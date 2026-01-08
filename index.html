@@ -1084,46 +1084,48 @@ document.addEventListener("DOMContentLoaded", function () {
      SLIDESHOW
   ====================== */
   const slidesContainer = document.querySelector(".slides");
-  const slides = document.querySelectorAll(".slide");
-  const prevBtn = document.getElementById("prevSlide");
-  const nextBtn = document.getElementById("nextSlide");
+const slides = document.querySelectorAll(".slide");
+const prevBtn = document.getElementById("prevSlide");
+const nextBtn = document.getElementById("nextSlide");
 
-  let index = 0;
+let index = 0;
 
-  function getVisibleSlides() {
-    if (window.innerWidth < 600) return 1;
-    if (window.innerWidth < 900) return 2;
-    return 3;
-  }
+function getVisibleSlides() {
+  if (window.innerWidth < 600) return 1;
+  if (window.innerWidth < 900) return 2;
+  return 3;
+}
 
-  function updateSlidePosition() {
-    if (!slides.length) return;
+function updateSlidePosition() {
+  if (!slides.length) return;
 
-    const visibleSlides = getVisibleSlides();
-    const slideWidth = slides[0].offsetWidth + 16;
-    const maxIndex = slides.length - visibleSlides;
+  const visibleSlides = getVisibleSlides();
+  const containerWidth = slidesContainer.offsetWidth;
+  const slideWidth = containerWidth / visibleSlides;
 
-    index = Math.max(0, Math.min(index, maxIndex));
+  const maxIndex = slides.length - visibleSlides;
+  index = Math.max(0, Math.min(index, maxIndex));
 
-    slidesContainer.style.transform =
-      `translateX(-${index * slideWidth}px)`;
+  slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
 
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === maxIndex;
-  }
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === maxIndex;
+}
 
-  prevBtn.addEventListener("click", () => {
-    index--;
-    updateSlidePosition();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    index++;
-    updateSlidePosition();
-  });
-
-  window.addEventListener("resize", updateSlidePosition);
+// Event listeners
+prevBtn.addEventListener("click", () => {
+  index--;
   updateSlidePosition();
+});
+
+nextBtn.addEventListener("click", () => {
+  index++;
+  updateSlidePosition();
+});
+
+window.addEventListener("resize", updateSlidePosition);
+window.addEventListener("load", updateSlidePosition); // zorgt dat alles geladen is
+
 
   /* ======================
      MOBILE MENU (100%)
@@ -1190,6 +1192,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
