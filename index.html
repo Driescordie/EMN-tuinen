@@ -829,6 +829,13 @@ header.scrolled {
 .service.active::after {
   content: '–'; /* verandert naar min als open */
 }
+	  .click-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
   </style>
 </head>
 
@@ -903,7 +910,10 @@ Kies voor vakmanschap en laat uw tuin stralen met ENM Tuinen!</p>
         </div>
       </div>
       <div class="service">
-        <div class="service-title">Terrasaanleg</div>
+       <div class="service-title">
+  		Terrasaanleg
+  		<span class="click-hint">Klik om meer te lezen</span>
+		</div>
         <div class="service-content">
           <p>
 Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
@@ -1183,6 +1193,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
