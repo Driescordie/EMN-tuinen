@@ -474,13 +474,14 @@ header.scrolled {
 
     /* Slideshow modern en schaalbaar */
     .slideshow-container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      overflow: hidden;
-      padding: 0;
-      position: relative;
-    }
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  overflow: hidden; /* dit moet blijven */
+  position: relative;
+  padding: 0; /* geen extra padding die de slides breekt */
+}
+
 
     .slides {
   display: flex;
@@ -492,13 +493,15 @@ header.scrolled {
 }
 
 
-   .slide {
-  flex: 0 0 calc((100% - 2rem) / 3); /* 3 slides zichtbaar op desktop */
+ .slide {
+  flex: 0 0 auto; /* belangrijk: geen calc() meer */
+  width: 33.333%; /* desktop: 3 slides zichtbaar */
   height: 360px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
   background: white;
+  scroll-snap-align: start; /* voor snap effect */
   transition: transform 0.3s ease;
 }
 
@@ -507,7 +510,6 @@ header.scrolled {
   height: 100%;
   object-fit: cover;
   border-radius: var(--radius-lg);
-  transition: transform 0.3s ease;
 }
 
     .slide img:hover {
@@ -548,10 +550,10 @@ header.scrolled {
       cursor: default;
     }
 
-    /* Responsive */
-   @media (max-width: 900px) {
+  /* Tablet: 2 slides */
+@media (max-width: 900px) {
   .slide {
-    flex: 0 0 calc((100% - 1rem) / 2); /* 2 slides zichtbaar */
+    width: 50%; /* 2 slides zichtbaar */
     height: 280px;
   }
 }
@@ -559,8 +561,7 @@ header.scrolled {
 /* Mobiel: 1 slide */
 @media (max-width: 600px) {
   .slide {
-    flex: 0 0 100%; /* 1 slide zichtbaar */
-    max-width: 100%; /* past altijd binnen container */
+    width: 100%; /* 1 slide zichtbaar */
     height: 240px;
   }
 }
@@ -1204,6 +1205,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
