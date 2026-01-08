@@ -157,14 +157,68 @@ header.scrolled {
 }
 
 /* Hamburger menu */
-.hamburger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; padding: 0; }
-.hamburger span { display: block; height: 3px; width: 100%; background: var(--green-dark); border-radius: 2px; transition: 0.3s; }
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
-/* Page Header */
-/* Services inklapbaar */
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 72px;
+  right: 0;
+  width: 100%;
+  background: var(--bg-section);
+  padding: 1.5rem;
+  z-index: 999;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.mobile-menu.active {
+  max-height: 500px;
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 900px) {
+  .desktop-menu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -727,7 +781,7 @@ header.scrolled {
 <body>
   <div class="page">
     <!-- Header -->
-    <header>
+   <header>
   <div class="container">
     <nav class="nav">
       <!-- Brand -->
@@ -741,7 +795,7 @@ header.scrolled {
         </div>
       </div>
 
-      <!-- Desktop Menu -->
+      <!-- Desktop menu -->
       <div class="nav-links desktop-menu">
         <a href="index.html">Home</a>
         <a href="about.html">Over ons</a>
@@ -749,7 +803,7 @@ header.scrolled {
         <a href="contact.html">Contact</a>
       </div>
 
-      <!-- Hamburger knop -->
+      <!-- Hamburger knop (mobiel) -->
       <button class="hamburger" aria-label="Menu openen">
         <span></span>
         <span></span>
@@ -768,6 +822,7 @@ header.scrolled {
     </nav>
   </div>
 </header>
+
 
     <!-- Hero -->
     <section class="hero">
@@ -1033,15 +1088,17 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ======================
      MOBILE MENU
   ====================== */
+ document.addEventListener("DOMContentLoaded", function () {
   const hamburger = document.querySelector(".hamburger");
   const mobileMenu = document.querySelector(".mobile-menu");
-  if(hamburger && mobileMenu){
+
+  if (hamburger && mobileMenu) {
     hamburger.addEventListener("click", () => {
       hamburger.classList.toggle("active");
       mobileMenu.classList.toggle("active");
     });
   }
-
+});
   /* ======================
      CONTACT FORM
   ====================== */
@@ -1084,6 +1141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
