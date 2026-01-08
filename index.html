@@ -184,25 +184,41 @@ header.scrolled {
 }
 
 /* Mobile menu zichtbaar bij active */
-.mobile-menu.active {
-  display: flex;
-}
-	  
-.hamburger {
-  z-index: 1000;
-  position: relative;
-}
-
-
-/* Toon hamburger op mobiel */
 @media (max-width: 900px) {
+  .nav {
+    position: relative;
+  }
+
   .hamburger {
     display: flex;
+    z-index: 10000;
   }
+
   .desktop-menu {
     display: none;
   }
+
+  .mobile-menu {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,.15);
+    z-index: 9999;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
 }
+
+
+
 
 
 /* Grid voor desktop */
@@ -1093,6 +1109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
