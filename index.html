@@ -472,115 +472,95 @@ header.scrolled {
       user-select: none;
     }
 
-   /* Slideshow container */
-.slideshow-container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  overflow: hidden; /* houdt slides netjes binnen */
-  position: relative;
-  padding: 0;
-}
-.slides {
-  display: flex;
-  gap: 16px; /* moet overeenkomen met JS */
-  transition: transform 0.4s ease;
-}
-.slide {
-  flex: 0 0 auto;
-}
-  
-/* Slides wrapper */
-.slides {
-  display: flex;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.5s ease-in-out;
-  overflow-x: auto;                /* scrollen op mobiel */
-  scroll-snap-type: x mandatory;   /* snap-effect */
-  -webkit-overflow-scrolling: touch; /* soepel scrollen iOS */
-}
+    /* Slideshow modern en schaalbaar */
+    .slideshow-container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+    }
 
-/* Elke slide */
-.slide {
-  flex: 0 0 auto;          /* voorkomt dat slides krimpen */
-  width: 33.333%;          /* desktop: 3 slides zichtbaar */
-  min-width: 220px;        /* voorkom te kleine slides */
-  height: 360px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  background: white;
-  scroll-snap-align: start; /* voor snap-effect */
-  transition: transform 0.3s ease;
-}
+    .slides {
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      transition: transform 0.5s ease-in-out;
+    }
 
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
+    .slide {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      background: white;
+      height: 360px;
+    }
 
-.slide img:hover {
-  transform: scale(1.03);
-}
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
 
-/* Knoppen */
-.slideshow-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1rem;
-  pointer-events: none;
-}
+    .slide img:hover {
+      transform: scale(1.03);
+    }
 
-.slideshow-buttons button {
-  pointer-events: auto;
-  background: rgba(46, 71, 52, 0.5);
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.25s;
-}
+    /* Knoppen */
+    .slideshow-buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      pointer-events: none;
+    }
 
-.slideshow-buttons button:hover:not(:disabled) {
-  background: rgba(46, 71, 52, 0.8);
-  transform: scale(1.1);
-}
+    .slideshow-buttons button {
+      pointer-events: auto;
+      background: rgba(46, 71, 52, 0.5);
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
 
-.slideshow-buttons button:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
+    .slideshow-buttons button:hover:not(:disabled) {
+      background: rgba(46, 71, 52, 0.8);
+      transform: scale(1.1);
+    }
 
-/* Responsief */
+    .slideshow-buttons button:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
 
-/* Tablet: 2 slides */
-@media (max-width: 900px) {
-  .slide {
-    width: 50%;
-    height: 280px;
-  }
-}
+    /* Responsive */
+    @media (max-width: 900px) {
+      .slide {
+        flex: 0 0 calc((100% - 1rem) / 2);
+        height: 280px;
+      }
+    }
 
-/* Mobiel: 1 slide */
-@media (max-width: 600px) {
-  .slide {
-    width: 100%;
-    height: 240px;
-  }
-}
-
+    @media (max-width: 600px) {
+      .slide {
+        flex: 0 0 100%;
+      }
+    }
 
     /* CTA / Contact */
     .cta {
@@ -628,6 +608,29 @@ header.scrolled {
       background: var(--bg-section);
       text-align: center;
       user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .slideshow-buttons button {
+        padding: 0.35rem 0.75rem;
+      }
+      .slide {
+        width: 240px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide {
+        width: 100%;
+        max-width: 320px;
+      }
     }
 
     /* Contact verbeterd – veilig */
@@ -1091,52 +1094,47 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ======================
      SLIDESHOW
   ====================== */
-const slidesContainer = document.querySelector(".slides");
-const slides = document.querySelectorAll(".slide");
-const prevBtn = document.getElementById("prevSlide");
-const nextBtn = document.getElementById("nextSlide");
+  const slidesContainer = document.querySelector(".slides");
+  const slides = document.querySelectorAll(".slide");
+  const prevBtn = document.getElementById("prevSlide");
+  const nextBtn = document.getElementById("nextSlide");
 
-let index = 0;
+  let index = 0;
 
-function getVisibleSlides() {
-  if (window.innerWidth < 600) return 1;
-  if (window.innerWidth < 900) return 2;
-  return 3;
-}
-
-function updateSlidePosition() {
-  const visibleSlides = getVisibleSlides();
-  const slideWidth = slides[0].offsetWidth + 16; // inclusief gap
-
-  // oneindige loop
-  if (index < 0) index = slides.length - visibleSlides;
-  if (index > slides.length - visibleSlides) index = 0;
-
-  slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
-}
-
-// Knoppen functionaliteit
-prevBtn.addEventListener("click", () => {
-  index--;
-  updateSlidePosition();
-});
-
-nextBtn.addEventListener("click", () => {
-  index++;
-  updateSlidePosition();
-});
-
-// Update bij resize
-window.addEventListener("resize", updateSlidePosition);
-
-// Init
-updateSlidePosition();
+  function getVisibleSlides() {
+    if (window.innerWidth < 600) return 1;
+    if (window.innerWidth < 900) return 2;
+    return 3;
   }
-});
 
-// Update bij resize
-window.addEventListener("resize", () => updateSlidePosition(true));
-window.addEventListener("load", () => updateSlidePosition(true));
+  function updateSlidePosition() {
+    if (!slides.length) return;
+
+    const visibleSlides = getVisibleSlides();
+    const slideWidth = slides[0].offsetWidth + 16;
+    const maxIndex = slides.length - visibleSlides;
+
+    index = Math.max(0, Math.min(index, maxIndex));
+
+    slidesContainer.style.transform =
+      `translateX(-${index * slideWidth}px)`;
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === maxIndex;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    index--;
+    updateSlidePosition();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    index++;
+    updateSlidePosition();
+  });
+
+  window.addEventListener("resize", updateSlidePosition);
+  updateSlidePosition();
 
   /* ======================
      MOBILE MENU (100%)
@@ -1203,14 +1201,6 @@ services.forEach(service => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
