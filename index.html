@@ -110,27 +110,6 @@ header.scrolled {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
-
-.nav-links a {
-  position: relative;
-  padding-bottom: 4px;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--green-soft), var(--earth-brown));
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
 .btn {
   padding: 0.55rem 1.4rem;
   font-size: 0.8rem;
@@ -156,14 +135,12 @@ header.scrolled {
   box-shadow: 0 6px 15px rgba(36,58,42,0.7);
 }
 
-/* Hamburger menu */
+/* Hamburger knop alleen op mobiel */
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  background: none;
-  border: none;
 }
 
 .hamburger span {
@@ -177,49 +154,35 @@ header.scrolled {
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
-
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Mobile menu */
-/* Mobile menu */
 .mobile-menu {
-  display: flex; /* niet none */
+  display: none;
   flex-direction: column;
   gap: 1rem;
-  position: absolute;
-  top: 72px;
-  right: 0;
-  width: 100%;
-  background: var(--bg-section);
-  padding: 1.5rem;
-  z-index: 999;
-  max-height: 0;         /* ingeklapt */
-  overflow: hidden;
-  transition: max-height 0.4s ease;
+  margin-top: 1rem;
 }
 
 .mobile-menu.active {
-  max-height: 500px;     /* uitgeklapt */
+  display: flex;
 }
 
-/* Show hamburger on mobile */
+/* Responsive */
 @media (max-width: 900px) {
   .desktop-menu {
     display: none;
   }
+
   .hamburger {
     display: flex;
   }
 }
-
-
-
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -1142,6 +1105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
