@@ -472,81 +472,6 @@ header.scrolled {
       user-select: none;
     }
 
-    /* Slideshow modern en schaalbaar */
-    .slideshow-container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      overflow: hidden;
-      padding: 0;
-      position: relative;
-    }
-
-    .slides {
-      display: flex;
-      gap: 1rem;
-      padding: 0;
-      margin: 0;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .slide {
-      flex: 0 0 calc((100% - 2rem) / 3);
-      display: flex;
-      flex-direction: column;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      background: white;
-      height: 360px;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .slide img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Knoppen */
-    .slideshow-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-      pointer-events: none;
-    }
-
-    .slideshow-buttons button {
-      pointer-events: auto;
-      background: rgba(46, 71, 52, 0.5);
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .slideshow-buttons button:hover:not(:disabled) {
-      background: rgba(46, 71, 52, 0.8);
-      transform: scale(1.1);
-    }
-
-    .slideshow-buttons button:disabled {
-      opacity: 0.3;
-      cursor: default;
-    }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -941,29 +866,6 @@ Bij ENM Tuinen plaatsen we omheiningen die zorgen voor privacy, veiligheid en ee
     </div>
   </div>
 </section>
-
-    <!-- Slideshow Realisaties -->
-    <section id="realisaties">
-      <div class="container">
-        <h2 class="section-title">Onze Realisaties</h2>
-        <p class="section-subtitle">Een selectie van recente tuinen die we hebben ontworpen en aangelegd.</p>
-
-        <div class="slideshow-container">
-          <div class="slides">
-            <div class="slide"><img src="img/garden-1.avif" alt="Tuin 1" /></div>
-            <div class="slide"><img src="img/garden-2.avif" alt="Tuin 2" /></div>
-            <div class="slide"><img src="img/garden-3.avif" alt="Tuin 3" /></div>
-            <div class="slide"><img src="img/garden-4.avif" alt="Tuin 4" /></div>
-            <div class="slide"><img src="img/garden-5.avif" alt="Tuin 5" /></div>
-          </div>
-          <div class="slideshow-buttons">
-            <button id="prevSlide">&#10094;</button>
-            <button id="nextSlide">&#10095;</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Team / Eigenaars -->
     <section id="team">
       <div class="container">
@@ -1092,51 +994,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .forEach((el) => observer.observe(el));
 
   /* ======================
-     SLIDESHOW
-  ====================== */
-  const slidesContainer = document.querySelector(".slides");
-  const slides = document.querySelectorAll(".slide");
-  const prevBtn = document.getElementById("prevSlide");
-  const nextBtn = document.getElementById("nextSlide");
-
-  let index = 0;
-
-  function getVisibleSlides() {
-    if (window.innerWidth < 600) return 1;
-    if (window.innerWidth < 900) return 2;
-    return 3;
-  }
-
-  function updateSlidePosition() {
-    if (!slides.length) return;
-
-    const visibleSlides = getVisibleSlides();
-    const slideWidth = slides[0].offsetWidth + 16;
-    const maxIndex = slides.length - visibleSlides;
-
-    index = Math.max(0, Math.min(index, maxIndex));
-
-    slidesContainer.style.transform =
-      `translateX(-${index * slideWidth}px)`;
-
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === maxIndex;
-  }
-
-  prevBtn.addEventListener("click", () => {
-    index--;
-    updateSlidePosition();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    index++;
-    updateSlidePosition();
-  });
-
-  window.addEventListener("resize", updateSlidePosition);
-  updateSlidePosition();
-
-  /* ======================
      MOBILE MENU (100%)
   ====================== */
   const hamburger = document.getElementById("hamburger");
@@ -1201,6 +1058,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
