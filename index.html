@@ -821,6 +821,37 @@
 .service.active .service-content {
   max-height: 500px;      /* genoeg om de inhoud te tonen */
 }
+	/* Desktop (breed scherm) */
+.desktop-menu {
+  display: flex;   /* laat normale menu zien */
+}
+
+.hamburger,
+.mobile-menu {
+  display: none;   /* verberg hamburger en mobiel menu */
+}
+
+/* Mobiel (smalle schermen) */
+@media screen and (max-width: 768px) {
+  .desktop-menu {
+    display: none;    /* verberg desktop menu */
+  }
+
+  .hamburger {
+    display: block;   /* laat hamburger zien */
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    display: none;    /* standaard ingeklapt */
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-menu.active {
+    display: flex;    /* show menu bij click */
+  }
+}
   </style>
 </head>
 
@@ -851,9 +882,9 @@
   <span></span>
 </div>
 			<div class="mobile-menu" id="mobileMenu">
-  <a href="about.html"></a>
-  <a href="realisaties.html"></a>
-  <a href="contact.html"></a>
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
 </div>
          
         </nav>
@@ -1169,6 +1200,7 @@ services.forEach(service => {
 </body>
 </body>
 </html>
+
 
 
 
