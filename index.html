@@ -208,12 +208,13 @@ header.scrolled {
 .service-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.5s ease;
 }
 
 .service.active .service-content {
-  max-height: 500px;
+  max-height: 1000px; /* ruim genoeg voor langere tekst */
 }
+
 
 /* Desktop / mobiel menu */
 .desktop-menu {
@@ -761,13 +762,12 @@ header.scrolled {
         </p>
         <div class="grid-3">
           <div class="card visible">
-            <h3>Tuinonderhoud</h3>
-            <p>Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door prachtig en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële werkzaamheden om uw buitenruimte gezond en netjes te houden. Van het maaien van gras, snoeien van bomen en struiken tot het verwijderen van onkruid en bemesten van de grond, wij nemen u al het werk uit handen.
-
-Of het nu gaat om een eenmalige onderhoudsbeurt of regelmatig onderhoud, wij stemmen onze diensten volledig af op uw wensen. Zo kunt u optimaal genieten van een prachtig verzorgde tuin, zonder zorgen.
-
-Kies voor vakmanschap en laat uw tuin stralen met ENM Tuinen!</p>
-          </div>
+            <div class="service">
+  <h3 class="service-title">Tuinonderhoud</h3>
+  <div class="service-content">
+    <p>Beschrijving …</p>
+  </div>
+</div>
           <div class="card visible">
             <h3>Terrasaanleg</h3>
             <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
@@ -1045,6 +1045,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
