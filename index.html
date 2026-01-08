@@ -770,6 +770,36 @@
     display: flex;
   }
 }
+	/* ==========================
+   SERVICES – READ MORE
+========================== */
+
+.service-content {
+  max-height: 5.5em; /* ongeveer 3 lijnen */
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.45s ease;
+}
+
+.service-card.expanded .service-content {
+  max-height: 1000px; /* groot genoeg */
+}
+
+.read-more {
+  margin-top: 0.8rem;
+  background: none;
+  border: none;
+  color: var(--green-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
 
   </style>
 </head>
@@ -828,14 +858,28 @@
         <p class="section-subtitle">
         </p>
         <div class="grid-3">
-          <div class="card visible">
-            <h3>Tuinonderhoud</h3>
-            <p>Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door prachtig en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële werkzaamheden om uw buitenruimte gezond en netjes te houden. Van het maaien van gras, snoeien van bomen en struiken tot het verwijderen van onkruid en bemesten van de grond, wij nemen u al het werk uit handen.
+<div class="card service-card visible">
+  <h3>Tuinonderhoud</h3>
 
-Of het nu gaat om een eenmalige onderhoudsbeurt of regelmatig onderhoud, wij stemmen onze diensten volledig af op uw wensen. Zo kunt u optimaal genieten van een prachtig verzorgde tuin, zonder zorgen.
+  <div class="service-content">
+    <p>
+      Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door prachtig
+      en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële werkzaamheden
+      om uw buitenruimte gezond en netjes te houden. Van het maaien van gras,
+      snoeien van bomen en struiken tot het verwijderen van onkruid en bemesten
+      van de grond.
+    </p>
 
-Kies voor vakmanschap en laat uw tuin stralen met ENM Tuinen!</p>
-          </div>
+    <p>
+      Of het nu gaat om een eenmalige onderhoudsbeurt of regelmatig onderhoud,
+      wij stemmen onze diensten volledig af op uw wensen. Zo kunt u optimaal
+      genieten van een prachtig verzorgde tuin, zonder zorgen.
+    </p>
+  </div>
+
+  <button class="read-more">Lees meer</button>
+</div>
+
           <div class="card visible">
             <h3>Terrasaanleg</h3>
             <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
@@ -1087,12 +1131,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.location.href = mailtoLink;
     });
+	  
+	  /* ======================
+  	 SERVICES READ MORE
+	====================== */
+document.querySelectorAll(".read-more").forEach(button => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".service-card");
+    card.classList.toggle("expanded");
+
+    button.textContent = card.classList.contains("expanded")
+      ? "Lees minder"
+      : "Lees meer";
+  });
+});
   }
 
 });
 </script>
 </body>
 </html>
+
 
 
 
