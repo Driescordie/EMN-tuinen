@@ -798,7 +798,37 @@ header.scrolled {
     max-width: 400px;
   }
 }
+.service {
+  background: var(--bg-section);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.4rem;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  width: 300px;
+  cursor: pointer; /* toont dat het klikbaar is */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* voor het plusje */
+}
 
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Plus/min indicator */
+.service::after {
+  content: '+';
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.2rem;
+  color: var(--green-dark);
+  transition: transform 0.3s ease;
+}
+
+.service.active::after {
+  content: '–'; /* verandert naar min als open */
+}
   </style>
 </head>
 
@@ -1153,6 +1183,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
