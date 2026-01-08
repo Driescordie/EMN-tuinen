@@ -8,9 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
-/* ---------------------------------------------------------
-   BASE STYLING (jouw originele stijl als fundament)
---------------------------------------------------------- */
+/* --- BASIS (zelfde stijl als je site) --- */
 :root {
   --bg-main: #f2f3ef;
   --bg-section: #ffffff;
@@ -20,61 +18,51 @@
   --text-main: #1f2a22;
   --text-muted: #5e6a61;
   --border-soft: #dde3db;
+  --shadow-soft: 0 14px 40px rgba(0,0,0,.12);
+  --shadow-card: 0 6px 20px rgba(0,0,0,.08);
   --radius-lg: 22px;
   --radius-md: 14px;
   --max-width: 1120px;
-
-  /* EXTRA WOW VARIABLES */
-  --glow-green: rgba(127, 155, 116, 0.6);
-  --glass-bg: rgba(255,255,255,0.35);
-  --glass-border: rgba(255,255,255,0.25);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* FIX: body als flexbox zodat footer onderaan blijft */
+html, body {
+  height: 100%;
+}
 body {
-  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", system-ui, sans-serif;
   background: var(--bg-main);
-  overflow-x: hidden;
   color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* ---------------------------------------------------------
-   3D PARALLAX BACKGROUND
---------------------------------------------------------- */
-.parallax-layer {
+main {
+  flex: 1; /* duwt footer naar beneden */
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- PARALLAX BACKGROUND --- */
+body::before {
+  content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: -10;
+  background-image: url('img/green-texture.jpg');
   background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-}
-.layer1 { background-image: url('img/texture1.jpg'); }
-.layer2 { background-image: url('img/texture2.jpg'); opacity: 0.10; }
-.layer3 { background-image: url('img/texture3.jpg'); opacity: 0.07; }
-
-/* ---------------------------------------------------------
-   FLOATING PARTICLES (stuifmeel)
---------------------------------------------------------- */
-.particle {
-  position: fixed;
-  width: 8px; height: 8px;
-  background: var(--green-soft);
-  border-radius: 50%;
-  opacity: 0.4;
-  pointer-events: none;
-  animation: floatUp 12s infinite linear;
-}
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(0.5); }
-  100% { transform: translateY(-10vh) scale(1); }
+  background-attachment: fixed;
+  opacity: 0.08;
+  z-index: -1;
 }
 
-/* ---------------------------------------------------------
-   HEADER (zelfde als jouw site)
---------------------------------------------------------- */
+/* --- HEADER / NAV (identiek aan je andere pagina’s) --- */
 header {
   background: var(--bg-section);
   border-bottom: 1px solid var(--border-soft);
@@ -84,26 +72,44 @@ header {
   transition: 0.3s;
 }
 header.scrolled {
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
 .nav {
-  max-width: var(--max-width);
-  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
+  padding: 1.2rem 0;
+  gap: 1rem;
 }
 
-.brand { display: flex; align-items: center; gap: 0.75rem; }
-.brand-logo img { width: 42px; height: 42px; border-radius: 12px; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.brand-logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
 
-.nav-links { display: flex; gap: 1.5rem; }
-.nav-links a {
+.nav-links-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: right 0.3s ease;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+}
+.nav-links a {
   position: relative;
   padding-bottom: 4px;
 }
@@ -113,258 +119,277 @@ header.scrolled {
   left: 0; bottom: 0;
   width: 0; height: 2px;
   background: linear-gradient(90deg, var(--green-soft), var(--earth-brown));
-  transition: width 0.3s;
+  transition: width 0.3s ease;
 }
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover::after {
+  width: 100%;
+}
 
-/* ---------------------------------------------------------
-   TITLE ANIMATION (CINEMATIC)
---------------------------------------------------------- */
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+/* --- TITLE ANIMATION --- */
 h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(2.8rem, 4vw, 4rem);
   text-align: center;
-  margin: 4rem 0 3rem;
+  margin: 3rem 0;
   color: var(--green-dark);
   opacity: 0;
-  transform: translateY(60px) scale(0.9);
-  animation: titleReveal 1.4s ease forwards;
-}
-@keyframes titleReveal {
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
 }
 
-/* ---------------------------------------------------------
-   CONTACT GRID (GLASSMORPHISM + 3D TILT)
---------------------------------------------------------- */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CONTACT GRID --- */
 .contact-grid {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
 }
 
+/* --- CARDS --- */
 .card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(18px);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-section);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
+  box-shadow: var(--shadow-card);
   position: relative;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {
-  transform: rotateX(8deg) rotateY(-8deg) scale(1.03);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(46,71,52,0.25);
 }
 
-/* ---------------------------------------------------------
-   FORM EFFECTS (PULSE + GLOW)
---------------------------------------------------------- */
+/* --- FORM --- */
 input, textarea {
   width: 100%;
-  padding: 1rem;
+  padding: 0.9rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-soft);
-  background: rgba(255,255,255,0.6);
   font-size: 1rem;
-  transition: 0.3s;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 input:focus, textarea:focus {
   border-color: var(--green-soft);
-  box-shadow: 0 0 15px var(--glow-green);
-  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(127,155,116,0.4);
+  outline: none;
 }
 
-/* ---------------------------------------------------------
-   BUTTON (ENERGY BURST)
---------------------------------------------------------- */
 .btn-primary {
-  padding: 1rem 1.6rem;
+  padding: 0.9rem 1.4rem;
   border-radius: 999px;
   border: none;
   background: linear-gradient(135deg, #2e4734, #5f7f56);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   transition: 0.3s;
 }
 .btn-primary:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(46,71,52,0.4);
-}
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 0; height: 0;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: 0.4s;
-}
-.btn-primary:active::after {
-  width: 300px; height: 300px;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(46,71,52,0.4);
 }
 
-/* ---------------------------------------------------------
-   SUCCESS PORTAL ANIMATION
---------------------------------------------------------- */
-#successPortal {
+/* --- SUCCESS POPUP --- */
+#successMessage {
   position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--green-soft), transparent 70%);
+  bottom: -200px;
+  right: 20px;
+  background: var(--green-dark);
+  color: #fff;
+  padding: 1.2rem 1.6rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  font-size: 1rem;
   opacity: 0;
-  transition: 0.6s ease;
+  transition: all 0.6s ease;
   z-index: 999;
 }
-#successPortal.show {
-  transform: translate(-50%, -50%) scale(1);
+#successMessage.show {
+  bottom: 30px;
   opacity: 1;
 }
 
-/* ---------------------------------------------------------
-   CURSOR LIGHT TRAIL
---------------------------------------------------------- */
-.trail {
-  position: fixed;
-  width: 12px; height: 12px;
-  background: var(--green-soft);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.7;
-  filter: blur(4px);
-  animation: fadeTrail 0.6s forwards;
-}
-@keyframes fadeTrail {
-  to { opacity: 0; transform: scale(0.2); }
+/* --- FOOTER FIXED ON BOTTOM --- */
+footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-section);
+  text-align: center;
+  user-select: none;
 }
 
-/* ---------------------------------------------------------
-   FOOTER
---------------------------------------------------------- */
-footer {
-  margin-top: 5rem;
-  padding: 2rem 0;
-  text-align: center;
-  background: var(--bg-section);
-  border-top: 1px solid var(--border-soft);
-  color: var(--text-muted);
+/* --- MOBILE FIXES (identiek aan je andere pagina’s) --- */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links-container {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: var(--bg-section);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5rem 1.5rem;
+    gap: 2rem;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 100;
+  }
+
+  .nav-links-container.open {
+    right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- PARALLAX LAYERS -->
-<div class="parallax-layer layer1"></div>
-<div class="parallax-layer layer2"></div>
-<div class="parallax-layer layer3"></div>
-
-<!-- FLOATING PARTICLES -->
-<script>
-for (let i = 0; i < 40; i++) {
-  const p = document.createElement("div");
-  p.className = "particle";
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.animationDelay = Math.random() * 10 + "s";
-  document.body.appendChild(p);
-}
-</script>
-
 <header>
-  <nav class="nav">
-    <div class="brand">
-      <div class="brand-logo"><img src="img/logo.png"></div>
-      <div>
-        <div class="brand-name">EMN Tuinen</div>
-        <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-logo"><img src="img/logo.png" alt="EMN Tuinen"></div>
+        <div>
+          <div class="brand-name">EMN Tuinen</div>
+          <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="realisaties.html">Realisaties</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+      <button class="hamburger" aria-label="Menu openen">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-links-container">
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="realisaties.html">Realisaties</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 
-<h1>Contact</h1>
+<main class="container">
+  <h1>Contact</h1>
 
-<div class="contact-grid">
+  <div class="contact-grid">
 
-  <section class="card">
-    <h2>Neem contact op</h2>
-    <p>Wij staan klaar om uw tuinproject tot leven te brengen.</p>
-    <p style="margin-top:1rem;">
-      📞 <a href="tel:+32495871101">0495/87.11.01</a><br>
-      📞 <a href="tel:+32471527416">0471/52.74.16</a><br>
-      ✉️ <a href="mailto:enmtuinen@gmail.com">enmtuinen@gmail.com</a>
-    </p>
-    <p style="margin-top:1rem;">📍 Regio Mol & omstreken</p>
-  </section>
+    <section class="card">
+      <h2>Neem contact op</h2>
+      <p>Wij staan klaar om uw tuinproject tot leven te brengen.</p>
+      <p style="margin-top:1rem;">
+        📞 <a href="tel:+32495871101">0495/87.11.01</a><br>
+        📞 <a href="tel:+32471527416">0471/52.74.16</a><br>
+        ✉️ <a href="mailto:enmtuinen@gmail.com">enmtuinen@gmail.com</a>
+      </p>
+      <p style="margin-top:1rem;">📍 Regio Mol & omstreken</p>
+    </section>
 
-  <section class="card">
-    <h2>Stuur ons een bericht</h2>
-    <form id="contactForm" style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem;">
-      <input type="text" name="naam" placeholder="Uw naam" required>
-      <input type="email" name="email" placeholder="Uw e-mailadres" required>
-      <textarea name="bericht" placeholder="Uw bericht" rows="5" required></textarea>
-      <button class="btn-primary" type="submit">Verzenden</button>
-    </form>
-  </section>
+    <section class="card">
+      <h2>Stuur ons een bericht</h2>
+      <form id="contactForm" style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem;">
+        <input type="text" name="naam" placeholder="Uw naam" required>
+        <input type="email" name="email" placeholder="Uw e-mailadres" required>
+        <textarea name="bericht" placeholder="Uw bericht" rows="5" required></textarea>
+        <button class="btn-primary" type="submit">Verzenden</button>
+      </form>
+    </section>
 
-</div>
+  </div>
+</main>
 
-<div id="successPortal"></div>
+<div id="successMessage">✔️ Bericht succesvol verzonden!</div>
 
 <footer>
   &copy; 2026 EMN Tuinen. Alle rechten voorbehouden.
 </footer>
 
 <script>
-/* HEADER SCROLL EFFECT */
+/* Header scroll effect */
+const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
-  document.querySelector("header").classList.toggle("scrolled", window.scrollY > 30);
+  header.classList.toggle("scrolled", window.scrollY > 30);
 });
 
-/* CURSOR TRAIL */
-document.addEventListener("mousemove", e => {
-  const t = document.createElement("div");
-  t.className = "trail";
-  t.style.left = e.pageX + "px";
-  t.style.top = e.pageY + "px";
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 600);
+/* Hamburger menu */
+const hamburger = document.querySelector(".hamburger");
+const navContainer = document.querySelector(".nav-links-container");
+hamburger.addEventListener("click", () => {
+  navContainer.classList.toggle("open");
+  hamburger.classList.toggle("open");
 });
 
-/* PARALLAX MOUSE MOVE */
-document.addEventListener("mousemove", e => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  document.querySelectorAll(".parallax-layer").forEach((layer, i) => {
-    layer.style.transform = `translate(${x * (i+1)}px, ${y * (i+1)}px)`;
-  });
-});
-
-/* SUCCESS PORTAL */
-document.getElementById("contactForm").addEventListener("submit", e => {
+/* Fake form submit + popup */
+document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  const portal = document.getElementById("successPortal");
-  portal.classList.add("show");
-  setTimeout(() => portal.classList.remove("show"), 1500);
-  e.target.reset();
+
+  const msg = document.getElementById("successMessage");
+  msg.classList.add("show");
+
+  setTimeout(() => {
+    msg.classList.remove("show");
+  }, 3000);
+
+  this.reset();
 });
 </script>
 
 </body>
 </html>
+
