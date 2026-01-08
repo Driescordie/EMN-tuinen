@@ -770,51 +770,7 @@
     display: flex;
   }
 }
-	/* ==========================
-   SERVICES – READ MORE (FIX)
-========================== */
 
-.service-content {
-  max-height: 5.5em; /* ongeveer 3 regels tekst */
-  overflow: hidden;
-  transition: max-height 0.45s ease;
-  margin-bottom: 0.6rem;
-}
-
-.service-card.expanded .service-content {
-  max-height: 20em; /* groot genoeg om uit te klappen zonder te lang */
-}
-
-.read-more {
-  display: inline-block;
-  background: var(--green-soft);
-  color: white;
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 3px 7px rgba(127, 155, 116, 0.5);
-  line-height: 1.2;
-}
-
-.read-more:hover {
-  background: var(--green-dark);
-  box-shadow: 0 6px 15px rgba(46, 71, 52, 0.6);
-}
-
-.read-more::after {
-  content: " ▼";
-  font-weight: 400;
-  font-size: 0.85rem;
-}
-
-.service-card.expanded .read-more::after {
-  content: " ▲";
-}
   </style>
 </head>
 
@@ -823,38 +779,30 @@
     <!-- Header -->
     <header>
       <div class="container">
-<nav class="nav">
-  <div class="brand">
-    <div class="brand-logo">
-      <img src="img/logo.png" alt="EMN Tuinen" />
-    </div>
-    <div>
-      <div class="brand-name">EMN Tuinen</div>
-      <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
-    </div>
-  </div>
-
-  <!-- Desktop menu -->
-  <div class="nav-links desktop-menu">
-    <a href="about.html">Over ons</a>
-    <a href="realisaties.html">Realisaties</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- Hamburger -->
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</nav>
-
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-logo">
+              <img src="img/logo.png" alt="EMN Tuinen" />
+            </div>
+            <div>
+              <div class="brand-name">EMN Tuinen</div>
+              <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+            </div>
+          </div>
+          <div class="nav-links desktop-menu">
   <a href="about.html">Over ons</a>
   <a href="realisaties.html">Realisaties</a>
   <a href="contact.html">Contact</a>
 </div>
+
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+         
+        </nav>
+      </div>
     </header>
 
     <!-- Hero -->
@@ -880,71 +828,29 @@
         <p class="section-subtitle">
         </p>
         <div class="grid-3">
+          <div class="card visible">
+            <h3>Tuinonderhoud</h3>
+            <p>Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door prachtig en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële werkzaamheden om uw buitenruimte gezond en netjes te houden. Van het maaien van gras, snoeien van bomen en struiken tot het verwijderen van onkruid en bemesten van de grond, wij nemen u al het werk uit handen.
 
-  <!-- Service 1 -->
-  <div class="card service-card visible">
-    <h3>Tuinonderhoud</h3>
+Of het nu gaat om een eenmalige onderhoudsbeurt of regelmatig onderhoud, wij stemmen onze diensten volledig af op uw wensen. Zo kunt u optimaal genieten van een prachtig verzorgde tuin, zonder zorgen.
 
-    <div class="service-content">
-      <p>
-        Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door
-        prachtig en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële
-        werkzaamheden om uw buitenruimte gezond en netjes te houden.
-      </p>
-      <p>
-        Of het nu gaat om een eenmalige onderhoudsbeurt of regelmatig onderhoud,
-        wij stemmen onze diensten volledig af op uw wensen.
-      </p>
-    </div>
+Kies voor vakmanschap en laat uw tuin stralen met ENM Tuinen!</p>
+          </div>
+          <div class="card visible">
+            <h3>Terrasaanleg</h3>
+            <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
 
-    <button class="read-more">Lees meer</button>
-  </div>
+Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke en comfortabele plek waar u jarenlang plezier van zult hebben.</p>
+          </div>
+          <div class="card visible">
+            <h3>Omheiningen plaatsen</h3>
+            <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
 
-  <!-- Service 2 -->
-  <div class="card service-card visible">
-    <h3>Terrasaanleg</h3>
+Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke en comfortabele plek waar u jarenlang plezier van zult hebben.
 
-    <div class="service-content">
-      <p>
-        Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met
-        klinkers of tegels, zodat u kunt genieten van een stijlvolle en
-        duurzame buitenruimte.
-      </p>
-      <p>
-        Wij starten met een zorgvuldige voorbereiding van de ondergrond en
-        plaatsen de materialen nauwkeurig voor een strak en duurzaam resultaat.
-      </p>
-      <p>
-        Of u nu kiest voor een klassiek of modern ontwerp, wij creëren een
-        onderhoudsvriendelijke plek waar u jarenlang van geniet.
-      </p>
-    </div>
-
-    <button class="read-more">Lees meer</button>
-  </div>
-
-  <!-- Service 3 -->
-  <div class="card service-card visible">
-    <h3>Omheiningen plaatsen</h3>
-
-    <div class="service-content">
-      <p>
-        Wij plaatsen omheiningen die niet alleen functioneel zijn, maar ook
-        perfect aansluiten bij de stijl van uw tuin en woning.
-      </p>
-      <p>
-        Van houten afsluitingen tot moderne draadafsluitingen: wij zorgen voor
-        een stevige plaatsing met oog voor detail en duurzaamheid.
-      </p>
-      <p>
-        Zo geniet u van privacy, veiligheid én een verzorgde uitstraling.
-      </p>
-    </div>
-
-    <button class="read-more">Lees meer</button>
-  </div>
-
-</div>
+​</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1058,7 +964,7 @@
   </div>
 
   <!-- Scripts -->
-<script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ======================
@@ -1066,7 +972,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ====================== */
   const header = document.querySelector("header");
   window.addEventListener("scroll", () => {
-    header.classList.toggle("scrolled", window.scrollY > 40);
+    if (window.scrollY > 40) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
   });
 
   /* ======================
@@ -1081,8 +988,8 @@ document.addEventListener("DOMContentLoaded", function () {
      FADE IN SECTIONS
   ====================== */
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
           observer.unobserve(entry.target);
@@ -1094,7 +1001,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document
     .querySelectorAll(".section-title, .section-subtitle, .card")
-    .forEach(el => observer.observe(el));
+    .forEach((el) => observer.observe(el));
 
   /* ======================
      SLIDESHOW
@@ -1115,23 +1022,25 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateSlidePosition() {
     if (!slides.length) return;
 
-    const visible = getVisibleSlides();
+    const visibleSlides = getVisibleSlides();
     const slideWidth = slides[0].offsetWidth + 16;
-    const maxIndex = slides.length - visible;
+    const maxIndex = slides.length - visibleSlides;
 
     index = Math.max(0, Math.min(index, maxIndex));
-    slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
+
+    slidesContainer.style.transform =
+      `translateX(-${index * slideWidth}px)`;
 
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === maxIndex;
   }
 
-  prevBtn?.addEventListener("click", () => {
+  prevBtn.addEventListener("click", () => {
     index--;
     updateSlidePosition();
   });
 
-  nextBtn?.addEventListener("click", () => {
+  nextBtn.addEventListener("click", () => {
     index++;
     updateSlidePosition();
   });
@@ -1140,29 +1049,26 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSlidePosition();
 
   /* ======================
-     MOBILE MENU
+     MOBILE MENU (100%)
   ====================== */
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
 
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", () => {
+    hamburger.addEventListener("click", function () {
       mobileMenu.classList.toggle("open");
+      console.log("hamburger clicked");
     });
+  } else {
+    console.warn("Hamburger of mobileMenu niet gevonden");
   }
-	document.querySelectorAll('#mobileMenu a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-  });
-});
-
 
   /* ======================
      CONTACT FORM
   ====================== */
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
-    contactForm.addEventListener("submit", e => {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -1175,44 +1081,18 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const mailto =
+      const mailtoLink =
         `mailto:info@emntuinen.nl?subject=${encodeURIComponent(subject)}&body=` +
         encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\n${message}`);
 
-      window.location.href = mailto;
+      window.location.href = mailtoLink;
     });
   }
 
-  /* ======================
-     SERVICES READ MORE
-  ====================== */
-  document.querySelectorAll(".read-more").forEach(button => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".service-card");
-      if (!card) return;
-
-      card.classList.toggle("expanded");
-
-      button.innerHTML = card.classList.contains("expanded")
-        ? "Lees minder ▲"
-        : "Lees meer ▼";
-    });
-  });
 });
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
