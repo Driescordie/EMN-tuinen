@@ -156,6 +156,55 @@ header.scrolled {
   box-shadow: 0 6px 15px rgba(36,58,42,0.7);
 }
 
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 1.5rem;
+  z-index: 9999;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-menu.active {
+  max-height: 500px;
+}
+
+/* Services inklapbaar */
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -220,6 +269,20 @@ header.scrolled {
   .desktop-menu {
     display: none;
   }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+}
+
 /* Hero */
 .hero {
   padding: 4rem 0 3.5rem;
@@ -773,68 +836,6 @@ header.scrolled {
   margin-top: 0.2rem;
   font-style: italic;
 }
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 22px;
-  cursor: pointer;
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: var(--green-dark);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-@media (max-width: 900px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 250px;
-    background: var(--bg-section);
-    flex-direction: column;
-    padding: 3rem 1.5rem;
-    gap: 1.5rem;
-    transition: right 0.3s ease;
-    z-index: 100;
-    box-shadow: -2px 0 20px rgba(0,0,0,0.1);
-  }
-
-  .nav-links.open {
-    right: 0;
-  }
-
-  .nav-links .btn {
-    width: 100%;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links a {
-    font-size: 1.1rem;
-  }
-}
-
-
   </style>
 </head>
 
@@ -842,33 +843,37 @@ header.scrolled {
   <div class="page">
     <!-- Header -->
     <header>
-  <div class="container">
-    <nav class="nav">
-      <div class="brand">
-        <div class="brand-logo"><img src="img/logo.png" alt="EMN Tuinen"></div>
-        <div>
-          <div class="brand-name">EMN Tuinen</div>
-          <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
-        </div>
-      </div>
+      <div class="container">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-logo">
+              <img src="img/logo.png" alt="EMN Tuinen" />
+            </div>
+            <div>
+              <div class="brand-name">EMN Tuinen</div>
+              <div class="brand-tagline">Tuinontwerp • Aanleg • Onderhoud</div>
+            </div>
+          </div>
+          <div class="nav-links desktop-menu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+<div class="hamburger" id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+			<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html">Over ons</a>
+  <a href="realisaties.html">Realisaties</a>
+  <a href="contact.html">Contact</a>
+</div>
+         
+        </nav>
       </div>
-
-      <div class="nav-links" id="nav-links">
-        <a href="index.html">Home</a>
-        <a href="realisaties.html">Realisaties</a>
-        <a href="overons.html">Over ons</a>
-        <a href="contact.html">Contact</a>
-        <button class="btn btn-primary">Vrijblijvend gesprek</button>
-      </div>
-    </nav>
-  </div>
-</header>
-
+    </header>
 
     <!-- Hero -->
     <section class="hero">
@@ -1194,29 +1199,8 @@ services.forEach(service => {
   });
 });
 </script>
-	<script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('open');
-});
-
-// Header scroll effect
-const header = document.querySelector("header");
-window.addEventListener("scroll", () => {
-  if(window.scrollY > 30) header.classList.add("scrolled");
-  else header.classList.remove("scrolled");
-});
-</script>
-
 </body>
 </html>
-
-
-
-
 
 
 
