@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-   :root {
+:root {
   --bg-main: #f2f3ef;
   --bg-section: #ffffff;
   --green-dark: #2e4734;
@@ -78,6 +78,7 @@ header.scrolled {
   align-items: center;
   padding: 1.2rem 0;
   gap: 1rem;
+  position: relative;
 }
 
 .brand {
@@ -110,6 +111,7 @@ header.scrolled {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
 .btn {
   padding: 0.55rem 1.4rem;
   font-size: 0.8rem;
@@ -135,7 +137,7 @@ header.scrolled {
   box-shadow: 0 6px 15px rgba(36,58,42,0.7);
 }
 
-/* Hamburger standaard verborgen op desktop */
+/* Hamburger & Mobile menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -153,7 +155,6 @@ header.scrolled {
   transition: all 0.3s ease;
 }
 
-/* Hamburger animatie */
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -164,31 +165,25 @@ header.scrolled {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile menu standaard verborgen */
 .mobile-menu {
   display: none;
   flex-direction: column;
   gap: 1rem;
   background: var(--bg-section);
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 72px;
+  left: 0;
   right: 0;
-  width: 80%;
-  max-width: 320px;
-  padding: 1rem;
-  box-shadow: var(--shadow-card);
-  z-index: 999;
-}
-.nav {
-  position: relative;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,.15);
+  z-index: 9999;
 }
 
-/* Mobile menu zichtbaar bij active */
+.mobile-menu.active {
+  display: flex;
+}
+
 @media (max-width: 900px) {
-  .nav {
-    position: relative;
-  }
-
   .hamburger {
     display: flex;
     z-index: 10000;
@@ -197,77 +192,9 @@ header.scrolled {
   .desktop-menu {
     display: none;
   }
-
-  .mobile-menu {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 1.5rem;
-    display: none;
-    flex-direction: column;
-    gap: 1.2rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,.15);
-    z-index: 9999;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
 }
 
-
-
-
-
-/* Grid voor desktop */
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 naast elkaar */
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-/* Service vak */
-.service {
-  background: var(--bg-section);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.2rem;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.service:hover {
-  transform: translateY(-3px);
-}
-
-/* Inklapbare content */
-.service-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  margin-top: 0.6rem;
-}
-
-.service.active .service-content {
-  max-height: 1000px; /* ruim genoeg */
-}
-
-/* Titel styling */
-.service-title {
-  font-weight: 600;
-  color: var(--green-dark);
-  margin-bottom: 0.4rem;
-}
 /* Hero */
-.hero {
-  padding: 4rem 0 3.5rem;
-  background: linear-gradient(to bottom, #eef2ec, var(--bg-main));
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -309,13 +236,11 @@ header.scrolled {
   box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: transform 0.4s ease;
-  will-change: transform;
   max-height: 480px;
 }
 
 .hero-image img {
   border-radius: var(--radius-lg);
-  height: auto;
   width: 100%;
   max-width: 600px;
   object-fit: cover;
@@ -327,339 +252,115 @@ header.scrolled {
   transform: scale(1.03) translateY(-6px);
   box-shadow: 0 16px 40px rgba(46, 71, 52, 0.35);
 }
- /* Sections */
-    section {
-      padding: 3.5rem 0;
-    }
 
-    section:nth-of-type(even) {
-      background: linear-gradient(to bottom, transparent, #f7f9f5, transparent);
-    }
-
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-      color: var(--green-dark);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .section-title.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-subtitle {
-      color: var(--text-muted);
-      max-width: 30rem;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
-    }
-
-    .section-subtitle.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card {
-      background: var(--bg-section);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem 1.4rem;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Owner profile cards */
-    .profile-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .profile-top {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .profile-top img {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #e6ded3;
-    }
-
-    .profile-name {
-      font-weight: 600;
-      color: var(--green-dark);
-    }
-
-    .profile-role {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .profile-text {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .profile-contact {
-      margin-top: auto;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    /* Nature divider */
-    .nature-divider {
-      height: 60vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url("img/garden-banner.jpg") center/cover fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: 600;
-      padding: 0 1rem;
-      line-height: 1.3;
-      user-select: none;
-    }
-
-    /* Slideshow modern en schaalbaar */
-    .slideshow-container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      overflow: hidden;
-      padding: 0;
-      position: relative;
-    }
-
-    .slides {
-      display: flex;
-      gap: 1rem;
-      padding: 0;
-      margin: 0;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .slide {
-      flex: 0 0 calc((100% - 2rem) / 3);
-      display: flex;
-      flex-direction: column;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
-      background: white;
-      height: 360px;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .slide img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Knoppen */
-    .slideshow-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
-      pointer-events: none;
-    }
-
-    .slideshow-buttons button {
-      pointer-events: auto;
-      background: rgba(46, 71, 52, 0.5);
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .slideshow-buttons button:hover:not(:disabled) {
-      background: rgba(46, 71, 52, 0.8);
-      transform: scale(1.1);
-    }
-
-    .slideshow-buttons button:disabled {
-      opacity: 0.3;
-      cursor: default;
-    }
-	  @media (max-width: 900px) {
-  .slideshow-buttons button {
-    padding: 0.35rem 0.75rem;
-  }
-
-  .slide {
-    width: 240px;
-  }
+/* Sections & Cards */
+section {
+  padding: 3.5rem 0;
 }
 
-    /* CTA / Contact */
-    .cta {
-      background: linear-gradient(135deg, #eef2ec, #e6ded3);
-    }
-
-    .cta-card {
-      background: var(--bg-section);
-      border-radius: 26px;
-      padding: 2rem;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      display: flex; 
-      flex-direction: row; 
-      justify-content: space-between;
-      align-items: center;    
-      gap: 2rem;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.6rem 0.7rem;
-      border-radius: 12px;
-      border: 1px solid var(--border-soft);
-      font-size: 0.85rem;
-      margin-bottom: 0.6rem;
-      font-family: inherit;
-      resize: none;
-      transition: border-color 0.3s ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--green-soft);
-      box-shadow: 0 0 5px var(--green-soft);
-    }
-
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 2rem 0;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: var(--bg-section);
-      text-align: center;
-      user-select: none;
-    }
-
-    /* Contact verbeterd – veilig */
-    .contact-modern {
-      grid-template-columns: 1.4fr 1fr;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-    }
-
-    .contact-info {
-      background: linear-gradient(135deg, #f5f7f2, #e6ded3);
-      border-radius: 20px;
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .socials {
-      display: flex;
-      gap: 0.6rem;
-      margin-top: auto;
-    }
-
-    .socials a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-card);
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-   @media (max-width: 900px) {
-  .contact-modern {
-    grid-template-columns: 1fr; /* alles onder elkaar */
-    gap: 1.5rem;
-  }
-
-  .contact-info {
-    width: 100%;
-  }
-
-  form#contactForm {
-    width: 100%;
-  }
+section:nth-of-type(even) {
+  background: linear-gradient(to bottom, transparent, #f7f9f5, transparent);
 }
-	  .cta-card {
-  padding: 1.5rem; /* minder dan desktop */
-  flex-direction: column; /* voor mobiele view */
+
+.section-title,
+.section-subtitle,
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section-title.visible,
+.section-subtitle.visible,
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slideshow */
+.slideshow-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides {
+  display: flex;
   gap: 1rem;
+  transition: transform 0.5s ease-in-out;
 }
-@media (max-width: 900px) {
-  .nature-divider {
-    background-attachment: scroll; /* fixed -> scroll */
-    height: 40vh; /* minder hoog op mobiel */
-    font-size: 1.2rem; /* tekst kleiner */
-    padding: 0 1rem;
-  }
+
+.slide {
+  flex: 0 0 calc((100% - 2rem) / 3);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: white;
+  height: 360px;
 }
-/* Services grid */
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform 0.3s ease;
+}
+
+.slideshow-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.slideshow-buttons button {
+  pointer-events: auto;
+  background: rgba(46, 71, 52, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.slideshow-buttons button:hover:not(:disabled) {
+  background: rgba(46, 71, 52, 0.8);
+  transform: scale(1.1);
+}
+
+.slideshow-buttons button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Services */
 .services-grid {
   display: flex;
-  justify-content: center; /* zorgt dat ze gecentreerd zijn */
+  justify-content: center;
   gap: 1.5rem;
-  flex-wrap: wrap; /* zorgt dat ze op mobiel onder elkaar vallen */
+  flex-wrap: wrap;
   margin-top: 2rem;
 }
 
 .service {
+  position: relative;
+  width: 300px;
   background: var(--bg-section);
   border-radius: var(--radius-lg);
   padding: 1.5rem 1.4rem;
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-soft);
-  width: 300px; /* vaste breedte voor desktop */
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -685,11 +386,9 @@ header.scrolled {
 }
 
 .service.active .service-content {
-  max-height: 500px; /* groot genoeg om alle inhoud te tonen */
+  max-height: 500px;
 }
 
-
-/* Plus/min indicator */
 .service::after {
   content: '+';
   position: absolute;
@@ -701,9 +400,10 @@ header.scrolled {
 }
 
 .service.active::after {
-  content: '–'; /* verandert naar min als open */
+  content: '–';
 }
-	  .click-hint {
+
+.click-hint {
   display: block;
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -711,21 +411,58 @@ header.scrolled {
   font-style: italic;
 }
 
-	@media (max-width: 900px) {
-  img {
-    max-width: 100%;
-    height: auto;
+/* Mobile Fixes */
+@media (max-width: 900px) {
+  .slide {
+    flex: 0 0 240px; /* smaller slides for mobile */
   }
 
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .nature-divider {
+    background-attachment: scroll; /* fixed -> scroll for mobile */
+    height: 40vh;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+
+  .services-grid,
   .service,
-  .card,
-  .slide {
+  .card {
     width: 100%;
     max-width: 100%;
   }
-}
 
-  </style>
+  .cta-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  img {
+    height: auto;
+  }
+
+  .contact-modern {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-info,
+  form#contactForm {
+    width: 100%;
+  }
+
+  .slideshow-buttons button {
+    padding: 0.35rem 0.75rem;
+    font-size: 1.2rem;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -1090,6 +827,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
