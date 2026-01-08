@@ -628,15 +628,33 @@ header.scrolled {
       font-weight: 600;
     }
 
-    @media (max-width: 900px) {
-      .contact-modern {
-        grid-template-columns: 1fr;
-      }
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
+   @media (max-width: 900px) {
+  .contact-modern {
+    grid-template-columns: 1fr; /* alles onder elkaar */
+    gap: 1.5rem;
+  }
 
+  .contact-info {
+    width: 100%;
+  }
+
+  form#contactForm {
+    width: 100%;
+  }
+}
+	  .cta-card {
+  padding: 1.5rem; /* minder dan desktop */
+  flex-direction: column; /* voor mobiele view */
+  gap: 1rem;
+}
+@media (max-width: 900px) {
+  .nature-divider {
+    background-attachment: scroll; /* fixed -> scroll */
+    height: 40vh; /* minder hoog op mobiel */
+    font-size: 1.2rem; /* tekst kleiner */
+    padding: 0 1rem;
+  }
+}
 /* (Hier kun je al je overige originele CSS kopiëren en plakken, niets verwijderen) */
 
 /* Responsive / mobiel optimalisatie */
@@ -1027,6 +1045,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
