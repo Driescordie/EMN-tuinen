@@ -205,18 +205,6 @@ header.scrolled {
 }
 
 /* Services inklapbaar */
-	    @media (max-width: 900px) {
-      .slide {
-        flex: 0 0 calc((100% - 1rem) / 2);
-        height: 280px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .slide {
-        flex: 0 0 100%;
-      }
-    }
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -560,6 +548,20 @@ header.scrolled {
       cursor: default;
     }
 
+    /* Responsive */
+    @media (max-width: 900px) {
+      .slide {
+        flex: 0 0 calc((100% - 1rem) / 2);
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide {
+        flex: 0 0 100%;
+      }
+    }
+
     /* CTA / Contact */
     .cta {
       background: linear-gradient(135deg, #eef2ec, #e6ded3);
@@ -619,7 +621,18 @@ header.scrolled {
       .slideshow-buttons button {
         padding: 0.35rem 0.75rem;
       }
-     
+      .slide {
+        width: 240px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
     /* Contact verbeterd – veilig */
     .contact-modern {
       grid-template-columns: 1.4fr 1fr;
@@ -687,6 +700,7 @@ header.scrolled {
     padding: 0 1rem;
   }
 }
+/* (Hier kun je al je overige originele CSS kopiëren en plakken, niets verwijderen) */
 
 /* Responsive / mobiel optimalisatie */
 @media (max-width: 900px) {
@@ -1187,8 +1201,6 @@ services.forEach(service => {
 </script>
 </body>
 </html>
-
-
 
 
 
