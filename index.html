@@ -655,6 +655,30 @@ header.scrolled {
     font-size: 15px;
   }
 }
+	  /* Algemeen voor mobiel */
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Hero grid op mobiel */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Grid-3 op mobiel */
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Slides container overflow fix */
+.slides {
+  overflow-x: hidden;
+}
 
   </style>
 </head>
@@ -1002,8 +1026,8 @@ services.forEach(service => {
 });
 </script>
 </body>
-</body>
 </html>
+
 
 
 
