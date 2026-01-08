@@ -742,6 +742,62 @@ header.scrolled {
 .slides {
   overflow-x: hidden;
 }
+/* Services grid */
+.services-grid {
+  display: flex;
+  justify-content: center; /* zorgt dat ze gecentreerd zijn */
+  gap: 1.5rem;
+  flex-wrap: wrap; /* zorgt dat ze op mobiel onder elkaar vallen */
+  margin-top: 2rem;
+}
+
+.service {
+  background: var(--bg-section);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.4rem;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  width: 300px; /* vaste breedte voor desktop */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+}
+
+.service-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--green-dark);
+  margin-bottom: 0.6rem;
+}
+
+.service-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.service.active .service-content {
+  max-height: 500px; /* groot genoeg om alle inhoud te tonen */
+}
+
+/* Mobiel */
+@media (max-width: 900px) {
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service {
+    width: 100%; /* volle breedte op mobiel */
+    max-width: 400px;
+  }
+}
 
   </style>
 </head>
@@ -800,35 +856,32 @@ header.scrolled {
 
     <!-- Filosofie -->
     <section id="filosofie">
-      <div class="container">
-        <h2 class="section-title">Onze services</h2>
-        <p class="section-subtitle">
-        </p>
-        <div class="grid-3">
-          <div class="card visible">
-            <div class="service">
-  <h3 class="service-title">Tuinonderhoud</h3>
-  <div class="service-content">
-    <p>Beschrijving …</p>
-  </div>
-</div>
-          <div class="card visible">
-            <h3>Terrasaanleg</h3>
-            <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
+  <div class="container">
+    <h2 class="section-title">Onze services</h2>
+    <p class="section-subtitle"></p>
 
-Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke en comfortabele plek waar u jarenlang plezier van zult hebben.</p>
-          </div>
-          <div class="card visible">
-            <h3>Omheiningen plaatsen</h3>
-            <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte. Wij beginnen met een zorgvuldige voorbereiding van de ondergrond, waarna we de klinkers of tegels nauwkeurig plaatsen voor een strak resultaat. Of u nu kiest voor een klassiek of modern ontwerp, wij zorgen voor een terras dat perfect aansluit bij uw tuin en woning.
-
-Met onze vakmanschap en oog voor detail creëren wij een onderhoudsvriendelijke en comfortabele plek waar u jarenlang plezier van zult hebben.
-
-​</p>
-          </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-title">Tuinonderhoud</div>
+        <div class="service-content">
+          <p>Bij ENM Tuinen zorgen we ervoor dat uw tuin er het hele jaar door prachtig en verzorgd uitziet. Ons tuinonderhoud omvat alle essentiële werkzaamheden om uw buitenruimte gezond en netjes te houden...</p>
         </div>
       </div>
-    </section>
+      <div class="service">
+        <div class="service-title">Terrasaanleg</div>
+        <div class="service-content">
+          <p>Bij ENM Tuinen verzorgen wij de complete aanleg van uw terras met klinkers of tegels, zodat u kunt genieten van een stijlvolle en duurzame buitenruimte...</p>
+        </div>
+      </div>
+      <div class="service">
+        <div class="service-title">Omheiningen plaatsen</div>
+        <div class="service-content">
+          <p>Bij ENM Tuinen plaatsen wij stevige en mooie omheiningen passend bij uw tuinontwerp. Vakmanschap en oog voor detail staan altijd voorop...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Slideshow Realisaties -->
     <section id="realisaties">
@@ -1089,6 +1142,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
