@@ -1083,12 +1083,19 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ======================
      SLIDESHOW
   ====================== */
-  const slidesContainer = document.querySelector(".slides");
+ const slidesContainer = document.querySelector(".slides");
 const slides = document.querySelectorAll(".slide");
 const prevBtn = document.getElementById("prevSlide");
 const nextBtn = document.getElementById("nextSlide");
 
 let index = 0;
+
+// Clone slides voor infinite loop
+slides.forEach(slide => slide.cloneNode(true));
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length - 1].cloneNode(true);
+slidesContainer.appendChild(firstClone);
+slidesContainer.insertBefore(lastClone, slidesContainer.firstChild);
 
 function getVisibleSlides() {
   if (window.innerWidth < 600) return 1;
@@ -1096,36 +1103,46 @@ function getVisibleSlides() {
   return 3;
 }
 
-function updateSlidePosition() {
-  if (!slides.length) return;
-
+function updateSlidePosition(instant = false) {
   const visibleSlides = getVisibleSlides();
   const containerWidth = slidesContainer.offsetWidth;
   const slideWidth = containerWidth / visibleSlides;
 
-  const maxIndex = slides.length - visibleSlides;
-  index = Math.max(0, Math.min(index, maxIndex));
-
-  slidesContainer.style.transform = `translateX(-${index * slideWidth}px)`;
-
-  prevBtn.disabled = index === 0;
-  nextBtn.disabled = index === maxIndex;
+  // transition instant of smooth
+  slidesContainer.style.transition = instant ? "none" : "transform 0.4s ease";
+  slidesContainer.style.transform = `translateX(-${(index + 1) * slideWidth}px)`;
 }
 
-// Event listeners
-prevBtn.addEventListener("click", () => {
-  index--;
-  updateSlidePosition();
-});
-
+// Knoppen functionaliteit
 nextBtn.addEventListener("click", () => {
   index++;
   updateSlidePosition();
+
+  const visibleSlides = getVisibleSlides();
+  const slideWidth = slidesContainer.offsetWidth / visibleSlides;
+  if (index >= slides.length) {
+    // reset naar eerste echte slide
+    index = 0;
+    setTimeout(() => updateSlidePosition(true), 420); // na animatie
+  }
 });
 
-window.addEventListener("resize", updateSlidePosition);
-window.addEventListener("load", updateSlidePosition); // zorgt dat alles geladen is
+prevBtn.addEventListener("click", () => {
+  index--;
+  updateSlidePosition();
 
+  const visibleSlides = getVisibleSlides();
+  const slideWidth = slidesContainer.offsetWidth / visibleSlides;
+  if (index < 0) {
+    // reset naar laatste echte slide
+    index = slides.length - 1;
+    setTimeout(() => updateSlidePosition(true), 420);
+  }
+});
+
+// Update bij resize
+window.addEventListener("resize", () => updateSlidePosition(true));
+window.addEventListener("load", () => updateSlidePosition(true));
 
   /* ======================
      MOBILE MENU (100%)
@@ -1192,6 +1209,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
