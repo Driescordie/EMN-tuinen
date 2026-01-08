@@ -205,6 +205,18 @@ header.scrolled {
 }
 
 /* Services inklapbaar */
+	    @media (max-width: 900px) {
+      .slide {
+        flex: 0 0 calc((100% - 1rem) / 2);
+        height: 280px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide {
+        flex: 0 0 100%;
+      }
+    }
 /* Grid voor desktop */
 .grid-3 {
   display: grid;
@@ -1175,6 +1187,7 @@ services.forEach(service => {
 </script>
 </body>
 </html>
+
 
 
 
