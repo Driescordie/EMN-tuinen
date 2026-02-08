@@ -33,14 +33,14 @@ a { text-decoration: none; color: inherit; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
 
 /* Header/Navbar */
-header { background: var(--bg-section); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; transition: 0.3s; }
+header { background: var(--bg-section); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; transition: 0.3s; height: 80px; }
 header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; gap: 1rem; position: relative; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 0; gap: 1rem; position: relative; height: 80px; }
 .brand { display: flex; align-items: center; gap: 0.75rem; }
-.brand-logo { width: 42px; height: 42px; border-radius: 12px; overflow: hidden; }
-.brand-name { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
-.brand-tagline { font-size: 0.75rem; color: var(--text-muted); }
+.brand-logo { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+.brand-name { font-size: 0.95rem; font-weight: 600; text-transform: uppercase; line-height: 1.2; }
+.brand-tagline { font-size: 0.75rem; color: var(--text-muted); line-height: 1.2; }
 
 /* Nav Links */
 .nav-links-container { display: flex; align-items: center; gap: 1.5rem; transition: right 0.3s ease; }
@@ -137,6 +137,8 @@ footer a:hover {
           <a href="about.html">Over ons</a>
           <a href="realisaties.html">Realisaties</a>
           <a href="contact.html">Contact</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -177,7 +179,7 @@ footer a:hover {
 </main>
 
 <footer>
-  © 2026 ENM Tuinen — Kwaliteit, betrouwbaarheid en vakmanschap.
+  © 2026 ENM Tuinen — Kwaliteit, betrouwbaarheid en vakmanschap.<br>
 Website ontworpen & gebouwd door <a href="https://cortech.be" target="_blank">Cortech</a>.
 </footer>
 
@@ -199,9 +201,3 @@ Website ontworpen & gebouwd door <a href="https://cortech.be" target="_blank">Co
 </script>
 </body>
 </html>
-
-
-
-
-
-
