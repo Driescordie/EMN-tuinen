@@ -34,49 +34,14 @@
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
 
     /* Header/Navbar */
-    header {
-      background: var(--bg-section);
-      border-bottom: 1px solid var(--border-soft);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      transition: 0.3s;
-    }
-    header.scrolled {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    }
+    header { background: var(--bg-section); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; transition: 0.3s; height: 80px; }
+    header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 0;
-      gap: 1rem;
-      position: relative;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .brand-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    .brand-tagline {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 0; gap: 1rem; position: relative; height: 80px; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-logo { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+    .brand-name { font-size: 0.95rem; font-weight: 600; text-transform: uppercase; line-height: 1.2; }
+    .brand-tagline { font-size: 0.75rem; color: var(--text-muted); line-height: 1.2; }
 
     /* Nav Links */
     .nav-links-container {
@@ -271,14 +236,14 @@
       margin-top:3rem;
     }
     footer a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 600;
-}
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-footer a:hover {
-  color: var(--green-dark);
-}
+    footer a:hover {
+      color: var(--green-dark);
+    }
 
   </style>
 </head>
@@ -329,32 +294,32 @@ footer a:hover {
     <div class="gallery-item"><img src="img/garden-6.avif" alt="Tuin 6"><div class="overlay">ENM Tuinen</div></div>
     <div class="gallery-item"><img src="img/garden-7.avif" alt="Tuin 7"><div class="overlay">ENM Tuinen</div></div>
     <div class="gallery-item"><img src="img/garden-8.avif" alt="Tuin 8"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-9.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-10.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-11.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-12.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-13.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-14.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-15.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-16.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-17.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-18.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-19.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-20.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-21.jpg" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-22.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-23.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-24.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-25.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-26.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-27.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-28.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-29.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-30.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-31.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-32.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-33.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
-    <div class="gallery-item"><img src="gallerij/garden-34.png" alt="Tuin 1"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-9.png" alt="Tuin 9"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-10.png" alt="Tuin 10"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-11.png" alt="Tuin 11"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-12.png" alt="Tuin 12"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-13.png" alt="Tuin 13"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-14.png" alt="Tuin 14"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-15.png" alt="Tuin 15"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-16.png" alt="Tuin 16"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-17.png" alt="Tuin 17"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-18.png" alt="Tuin 18"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-19.png" alt="Tuin 19"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-20.png" alt="Tuin 20"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-21.jpg" alt="Tuin 21"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-22.png" alt="Tuin 22"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-23.png" alt="Tuin 23"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-24.png" alt="Tuin 24"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-25.png" alt="Tuin 25"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-26.png" alt="Tuin 26"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-27.png" alt="Tuin 27"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-28.png" alt="Tuin 28"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-29.png" alt="Tuin 29"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-30.png" alt="Tuin 30"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-31.png" alt="Tuin 31"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-32.png" alt="Tuin 32"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-33.png" alt="Tuin 33"><div class="overlay">ENM Tuinen</div></div>
+    <div class="gallery-item"><img src="gallerij/garden-34.png" alt="Tuin 34"><div class="overlay">ENM Tuinen</div></div>
     </div>
 </section>
 
@@ -366,7 +331,7 @@ footer a:hover {
 </div>
 
 <footer>
- © 2026 ENM Tuinen — Kwaliteit, betrouwbaarheid en vakmanschap.
+ © 2026 ENM Tuinen — Kwaliteit, betrouwbaarheid en vakmanschap.<br>
 Website ontworpen & gebouwd door <a href="https://cortech.be" target="_blank">Cortech</a>.
 </footer>
 
@@ -421,13 +386,3 @@ Website ontworpen & gebouwd door <a href="https://cortech.be" target="_blank">Co
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
